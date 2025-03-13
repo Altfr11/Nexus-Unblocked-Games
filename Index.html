@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/images/ico.ico" type="image/x-icon">
-        <title>Offline | Utopia</title>
+        <title>Utopia</title>
 
         <style>
             @font-face {
@@ -27,6 +28,8 @@
                 background-size: cover;
                 background-attachment: fixed;
                 height: 100vh;
+                color: white;
+                overflow: hidden;
             }
 
             .content-side {
@@ -199,7 +202,7 @@
                 max-width: 800px;
             }
 
-            .back-to-home {
+            .back-link {
                 position: absolute;
                 top: 20px;
                 left: 20px;
@@ -210,76 +213,120 @@
                 z-index: 2;
             }
 
-            .back-to-home:hover {
+            .back-link:hover {
                 color: rgba(255, 255, 255, 1);
             }
 
-            .back-to-home::before {
+            .back-link::before {
                 content: "← ";
                 font-size: 20px;
+            }
+
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                padding: 20px;
+                backdrop-filter: blur(10px);
+                z-index: 1;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .movie-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+            }
+
+            .movie-item {
+                width: 30%;
+                min-width: 250px;
+                padding: 10px;
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 10px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                transition: background-color 0.3s ease;
+            }
+
+            .movie-item h3 {
+                font-size: 18px;
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            .movie-item a {
+                display: block;
+                margin-top: 10px;
+                font-size: 16px;
+                color: #00bcd4;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .movie-item a:hover {
+                color: #ff5722;
+            }
+
+            .genre-title {
+                font-size: 28px;
+                color: rgba(255, 255, 255, 0.8);
+                margin-bottom: 20px;
+                text-transform: uppercase;
+                text-align: center;
+                letter-spacing: 1px;
+            }
+
+            .iframe-container {
+                width: 90%;
+                max-width: 1200px;
+                height: 80vh;
+                border: 3px solid rgba(255, 255, 255, 0.7);
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+            }
+
+            iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+            @media (max-width: 768px) {
+                .movie-item {
+                    width: 45%;
+                }
+                .title {
+                    font-size: 36px;
+                }
+                .genre-title {
+                    font-size: 24px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .movie-item {
+                    width: 90%;
+                    margin-bottom: 15px;
+                }
+                .title {
+                    font-size: 28px;
+                }
+                .genre-title {
+                    font-size: 20px;
+                }
             }
         </style>
     </head>
     <body>
-        <div class="content-side" id="main-content">
-            <div class="title">
-                <span class="letter">U</span>
-                <span class="letter">t</span>
-                <span class="letter">o</span>
-                <span class="letter">p</span>
-                <span class="letter">i</span>
-                <span class="letter">a</span>
-            </div>
-            <h2 class="sub-title">version 3.2</h2>
-            <div id="online-notice">Enjoy the freedom of being able to watch any show, movie, or play any game you would like.</div>
-          
-            <div class="button-container">
-                <a href="https://sites.google.com/view/certifiedmath/page_4?authuser=0" class="button">Games</a>
-                <a href="https://sites.google.com/view/certifiedmath/page_6/doge-proxy" class="button">Proxies</a>
-                <button class="button" onclick="showMore()">More</button>
-            </div>
-            <br>
-            <a href="#">˗ˏˋ❀ website created & developed by Jordan Alvarado ❀ ´ˎ˗</a>
-            <br>
-            <div class="search-container">
-                <input type="text" id="search-query-input" class="search-bar" placeholder="Search Utopia" onkeypress="return searchKeyPress(event);">
-                <button id="search-button" class="search-button" onclick="submitSearch();">Go</button>
-            </div>
-            <br>
-            <div class="datetime" id="datetime"></div>
+        <div id="content-side" class="content-side">
+            <!-- Initial content will be loaded by showHome() -->
         </div>
 
         <script>
-            // Function to show "More" content
-            function showMore() {
-                const contentSide = document.getElementById('main-content');
-                contentSide.innerHTML = `
-                    <a href="#" class="back-to-home" onclick="showHome(); return false;">Home</a>
-                    <div class="title">
-                        <span class="letter">M</span>
-                        <span class="letter">o</span>
-                        <span class="letter">r</span>
-                        <span class="letter">e</span>
-                    </div>
-                    <h2 class="sub-title">More Information</h2>
-                    <div class="description">
-                        <p>Welcome to the "More" page of Utopia! Here, you'll find extra resources, information, and tools to enhance your experience.</p>
-                        <p>Explore various TV Shows, Movies, and Our Partners!</p>
-                    </div>
-                    <div class="button-container">
-                        <a href="https://sites.google.com/view/certifiedmath/page_5?authuser=0" class="button">Movies</a>
-                        <a href="https://sites.google.com/view/certifiedmath/-?authuser=0" class="button">TV Shows</a>
-                        <a href="https://sites.google.com/view/certifiedmath/page" class="button">Partners</a>
-                    </div>
-                    <br>
-                    <a href="#">˗ˏˋ❀ website created & developed by Jordan Alvarado ❀ ´ˎ˗</a>
-                    <br><br><br>
-                `;
-            }
-
-            // Function to return to home content
             function showHome() {
-                const contentSide = document.getElementById('main-content');
+                const contentSide = document.getElementById('content-side');
                 contentSide.innerHTML = `
                     <div class="title">
                         <span class="letter">U</span>
@@ -293,7 +340,7 @@
                     <div id="online-notice">Enjoy the freedom of being able to watch any show, movie, or play any game you would like.</div>
                     <div class="button-container">
                         <a href="https://sites.google.com/view/certifiedmath/page_4?authuser=0" class="button">Games</a>
-                        <a href="https://sites.google.com/view/certifiedmath/page_6/doge-proxy" class="button">Proxies</a>
+                        <button class="button" onclick="showProxies()">Proxies</button>
                         <button class="button" onclick="showMore()">More</button>
                     </div>
                     <br>
@@ -306,8 +353,169 @@
                     <br>
                     <div class="datetime" id="datetime"></div>
                 `;
-                updateDateTime(); // Restart datetime update
-                typewriterEffect(); // Restart typewriter effect
+                updateDateTime();
+                typewriterEffect();
+            }
+
+            function showMore() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
+                    <div class="title">
+                        <span class="letter">M</span>
+                        <span class="letter">o</span>
+                        <span class="letter">r</span>
+                        <span class="letter">e</span>
+                    </div>
+                    <h2 class="sub-title">More Information</h2>
+                    <div class="description">
+                        <p>Welcome to the "More" page of Utopia! Here, you'll find extra resources, information, and tools to enhance your experience.</p>
+                        <p>Explore various TV Shows, Movies, and Our Partners!</p>
+                    </div>
+                    <div class="button-container">
+                        <button class="button" onclick="showMovies()">Movies</button>
+                        <a href="https://sites.google.com/view/certifiedmath/-?authuser=0" class="button">TV Shows</a>
+                        <a href="https://sites.google.com/view/certifiedmath/page" class="button">Partners</a>
+                    </div>
+                    <br>
+                    <a href="#">˗ˏˋ❀ website created & developed by Jordan Alvarado ❀ ´ˎ˗</a>
+                    <br><br><br>
+                `;
+            }
+
+            function showMovies() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showMore(); return false;">More</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">U</span>
+                            <span class="letter">t</span>
+                            <span class="letter">o</span>
+                            <span class="letter">p</span>
+                            <span class="letter">i</span>
+                            <span class="letter">a</span>
+                            <span class="letter"> </span>
+                            <span class="letter">M</span>
+                            <span class="letter">o</span>
+                            <span class="letter">v</span>
+                            <span class="letter">i</span>
+                            <span class="letter">e</span>
+                            <span class="letter">s</span>
+                        </div>
+                        <div class="genre-title">Superhero Movies</div>
+                        <div class="movie-container">
+                            <div class="movie-item">
+                                <h3>Batman The Dark Knight</h3>
+                                <a href="https://drive.google.com/file/d/1_g_fq1MEbqXuapY_dxXSdohAx8zmxwOX/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>The Amazing Spider-Man 2</h3>
+                                <a href="https://drive.google.com/file/d/1I94qWG6AAUfBzuLmksfBppnOP8Tu0-jp/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Ant-Man</h3>
+                                <a href="https://drive.google.com/file/d/1_qJqk2Ss1f45puz3xGQcdD1NxM3ipupj/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Ant-Man And The Wasp</h3>
+                                <a href="https://drive.google.com/file/d/1AstKQ5KLX94k7RFIlsu2St9um8sS_w_M/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Shazam</h3>
+                                <a href="https://drive.google.com/file/d/1u5u_-G0KReiP4Q4eHvx7qwb4jv6ZARdh/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Guardians Of The Galaxy: Vol 2</h3>
+                                <a href="https://drive.google.com/file/d/0B-uFeCO4yCFIZXNnLUg3cVdiU3M/view?t=8&resourcekey=0-s1hwC6vvc_w-Q2CRrpP08g">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>X-Men Origins: Wolverine</h3>
+                                <a href="https://drive.google.com/file/d/0BxvqXivT-hg5d2VmZDdsNlBNUzQ/view?resourcekey=0-QWd9FlwAU9FUyU3Ejx_Cqw">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Spider-Man Far From Home</h3>
+                                <a href="https://drive.google.com/file/d/1acFojGkY1Iv9EgcGSWEP-I3a8uYb-jhB/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Wolverine</h3>
+                                <a href="https://drive.google.com/file/d/0BzeqnwcztH5cRERqUGl6TFkyc3M/view?resourcekey=0--S8rnshNZ6cP5uYrkFu3WA">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Venom: Let There Be Carnage</h3>
+                                <a href="https://drive.google.com/file/d/13d5gq3Kx3koobcfRTVyH9Hhum3s8Fxag/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Venom 2018</h3>
+                                <a href="https://drive.google.com/file/d/1NawKoXfJE6G7qIuiaOrfULpRDN2P1xTS/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Back to The Future</h3>
+                                <a href="https://drive.google.com/file/d/1ZwP0FLdFdAoeskqGvQYX5CwqEeSFWS1G/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Back to The Future 2</h3>
+                                <a href="https://drive.google.com/file/u/0/d/1vmA2LTkSzbtUJve8TTy2UVkPAfHMtGwK/vi">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Back to The Future 3</h3>
+                                <a href="https://drive.google.com/file/d/16A4hzHFTcNduq6F-u4zQw7iTha5aEKD-/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Dungeons And Dragons: Honor Among Thieves</h3>
+                                <a href="https://drive.google.com/file/d/1nQuEZIPO4d_hY_799VwOtIg7LldXAoFz/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>The Princess Bride</h3>
+                                <a href="https://drive.google.com/file/d/1YnPym55TCYUgdEe65MHELL13ygweFutT/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>King Kong</h3>
+                                <a href="https://drive.google.com/file/d/0B4puC3vPIb6YZmMxbk9DOURnVnM/view?resourcekey=0-GeuoDzgmOi-O97KfEGZKUA">Watch Now</a>
+                            </div>
+                        </div>
+                        <div class="genre-title">Comedy Movies</div>
+                        <div class="movie-container">
+                            <div class="movie-item">
+                                <h3>Superbad</h3>
+                                <a href="https://drive.google.com/file/d/1g4dkkdJlfjJDhf9K1hRhR7t5k7e39CjD/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>The Hangover</h3>
+                                <a href="https://drive.google.com/file/d/1PrXtG7-R3mRIvlNz7yS7JkLZfCyLvyyi/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>21 Jump Street</h3>
+                                <a href="https://drive.google.com/file/d/19r8P_RGbHJWzmpDfhHh7y2kfuqtCdk6_/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>Step Brothers</h3>
+                                <a href="https://drive.google.com/file/d/19m1hhsGgpnwTc8QckgW5W7Q5Jm7Os-vd/view">Watch Now</a>
+                            </div>
+                            <div class="movie-item">
+                                <h3>The Grand Budapest Hotel</h3>
+                                <a href="https://drive.google.com/file/d/1Fw15w99QdVLKBgoqRzoD5tXt3PL43tAk/view">Watch Now</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showProxies() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
+                    <div class="title">
+                        <span class="letter">P</span>
+                        <span class="letter">r</span>
+                        <span class="letter">o</span>
+                        <span class="letter">x</span>
+                        <span class="letter">y</span>
+                    </div>
+                    <div class="iframe-container">
+                        <iframe src="https://renrendane.laviewddns.com/" allowfullscreen></iframe>
+                    </div>
+                `;
             }
 
             // Typewriter Effect for Placeholder Text
@@ -327,7 +535,7 @@
 
             function typewriterEffect() {
                 var inputField = document.getElementById("search-query-input");
-                if (!inputField) return; // Exit if search bar is not present
+                if (!inputField) return;
                 var currentPhrase = phrases[currentPhraseIndex];
 
                 inputField.placeholder = currentPhrase.substring(0, currentCharIndex + 1);
@@ -347,7 +555,7 @@
             // Date and Time Update
             function updateDateTime() {
                 const datetimeElement = document.getElementById('datetime');
-                if (!datetimeElement) return; // Exit if datetime element is not present
+                if (!datetimeElement) return;
                 const now = new Date();
                 const options = {
                     year: 'numeric',
@@ -389,8 +597,7 @@
 
             // Initialize on page load
             window.onload = function() {
-                typewriterEffect();
-                updateDateTime();
+                showHome();
                 setInterval(updateDateTime, 1000);
             };
         </script>
