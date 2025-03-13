@@ -98,7 +98,7 @@
             }
 
             .search-container {
-                margin-top: 20px; /* Adjusted margin for bottom placement */
+                margin-top: 20px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -189,10 +189,39 @@
                 margin-top: 20px;
                 letter-spacing: 1px;
             }
+
+            .description {
+                font-size: 18px;
+                color: rgba(255, 255, 255, 0.7);
+                margin-top: 20px;
+                padding: 10px 20px;
+                text-align: left;
+                max-width: 800px;
+            }
+
+            .back-to-home {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 18px;
+                text-decoration: none;
+                transition: color 0.3s ease-in-out;
+                z-index: 2;
+            }
+
+            .back-to-home:hover {
+                color: rgba(255, 255, 255, 1);
+            }
+
+            .back-to-home::before {
+                content: "← ";
+                font-size: 20px;
+            }
         </style>
     </head>
     <body>
-        <div class="content-side">
+        <div class="content-side" id="main-content">
             <div class="title">
                 <span class="letter">U</span>
                 <span class="letter">t</span>
@@ -207,7 +236,7 @@
             <div class="button-container">
                 <a href="https://sites.google.com/view/certifiedmath/page_4?authuser=0" class="button">Games</a>
                 <a href="https://sites.google.com/view/certifiedmath/page_6/doge-proxy" class="button">Proxies</a>
-                <a href="https://sites.google.com/view/certifiedmath/more" class="button">More</a>
+                <button class="button" onclick="showMore()">More</button>
             </div>
             <br>
             <a href="#">˗ˏˋ❀ website created & developed by Jordan Alvarado ❀ ´ˎ˗</a>
@@ -221,6 +250,66 @@
         </div>
 
         <script>
+            // Function to show "More" content
+            function showMore() {
+                const contentSide = document.getElementById('main-content');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-to-home" onclick="showHome(); return false;">Home</a>
+                    <div class="title">
+                        <span class="letter">M</span>
+                        <span class="letter">o</span>
+                        <span class="letter">r</span>
+                        <span class="letter">e</span>
+                    </div>
+                    <h2 class="sub-title">More Information</h2>
+                    <div class="description">
+                        <p>Welcome to the "More" page of Utopia! Here, you'll find extra resources, information, and tools to enhance your experience.</p>
+                        <p>Explore various TV Shows, Movies, and Our Partners!</p>
+                    </div>
+                    <div class="button-container">
+                        <a href="https://sites.google.com/view/certifiedmath/page_5?authuser=0" class="button">Movies</a>
+                        <a href="https://sites.google.com/view/certifiedmath/-?authuser=0" class="button">TV Shows</a>
+                        <a href="https://sites.google.com/view/certifiedmath/page" class="button">Partners</a>
+                    </div>
+                    <br>
+                    <a href="#">˗ˏˋ❀ website created & developed by Jordan Alvarado ❀ ´ˎ˗</a>
+                    <br><br><br>
+                `;
+            }
+
+            // Function to return to home content
+            function showHome() {
+                const contentSide = document.getElementById('main-content');
+                contentSide.innerHTML = `
+                    <div class="title">
+                        <span class="letter">U</span>
+                        <span class="letter">t</span>
+                        <span class="letter">o</span>
+                        <span class="letter">p</span>
+                        <span class="letter">i</span>
+                        <span class="letter">a</span>
+                    </div>
+                    <h2 class="sub-title">version 3.2</h2>
+                    <div id="online-notice">Enjoy the freedom of being able to watch any show, movie, or play any game you would like.</div>
+                    <div class="button-container">
+                        <a href="https://sites.google.com/view/certifiedmath/page_4?authuser=0" class="button">Games</a>
+                        <a href="https://sites.google.com/view/certifiedmath/page_6/doge-proxy" class="button">Proxies</a>
+                        <button class="button" onclick="showMore()">More</button>
+                    </div>
+                    <br>
+                    <a href="#">˗ˏˋ❀ website created & developed by Jordan Alvarado ❀ ´ˎ˗</a>
+                    <br>
+                    <div class="search-container">
+                        <input type="text" id="search-query-input" class="search-bar" placeholder="Search Utopia" onkeypress="return searchKeyPress(event);">
+                        <button id="search-button" class="search-button" onclick="submitSearch();">Go</button>
+                    </div>
+                    <br>
+                    <div class="datetime" id="datetime"></div>
+                `;
+                updateDateTime(); // Restart datetime update
+                typewriterEffect(); // Restart typewriter effect
+            }
+
             // Typewriter Effect for Placeholder Text
             var phrases = [
                 "Search for a game...",
@@ -234,10 +323,11 @@
             ];
             var currentPhraseIndex = 0;
             var currentCharIndex = 0;
-            var typingSpeed = 180; // Speed of typing in ms
+            var typingSpeed = 180;
 
             function typewriterEffect() {
                 var inputField = document.getElementById("search-query-input");
+                if (!inputField) return; // Exit if search bar is not present
                 var currentPhrase = phrases[currentPhraseIndex];
 
                 inputField.placeholder = currentPhrase.substring(0, currentCharIndex + 1);
@@ -250,12 +340,14 @@
                         currentCharIndex = 0;
                         currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
                         typewriterEffect();
-                    }, 1000); // Delay before next phrase
+                    }, 1000);
                 }
             }
 
             // Date and Time Update
             function updateDateTime() {
+                const datetimeElement = document.getElementById('datetime');
+                if (!datetimeElement) return; // Exit if datetime element is not present
                 const now = new Date();
                 const options = {
                     year: 'numeric',
@@ -267,7 +359,7 @@
                     hour12: true
                 };
                 const formattedDateTime = now.toLocaleString('en-US', options);
-                document.getElementById('datetime').textContent = formattedDateTime;
+                datetimeElement.textContent = formattedDateTime;
             }
 
             // Search Functionality
