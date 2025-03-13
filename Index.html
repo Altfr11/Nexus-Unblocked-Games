@@ -70,6 +70,10 @@
             .letter:nth-child(5) { animation-delay: 2s; }
             .letter:nth-child(6) { animation-delay: 2.5s; }
             .letter:nth-child(7) { animation-delay: 3s; }
+            .letter:nth-child(8) { animation-delay: 3.5s; }
+            .letter:nth-child(9) { animation-delay: 4s; }
+            .letter:nth-child(10) { animation-delay: 4.5s; }
+            .letter:nth-child(11) { animation-delay: 5s; }
 
             @keyframes fadeIn {
                 0% { opacity: 0; transform: translateY(-50px); }
@@ -101,7 +105,7 @@
             }
 
             .search-container {
-                margin-top: 20px;
+                margin: 20px 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -232,27 +236,28 @@
                 overflow-y: auto;
             }
 
-            .movie-container {
+            .movie-container, .games-container {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 20px;
                 justify-content: center;
             }
 
-            .movie-item {
-                width: 30%;
-                min-width: 250px;
+            .movie-item, .game-item {
+                width: 200px;
                 padding: 10px;
-                background-color: rgba(255, 255, 255, 0.2);
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 2px solid rgba(255, 255, 255, 0.7);
                 border-radius: 10px;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
                 text-align: center;
-                transition: background-color 0.3s ease;
+                transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+                cursor: pointer;
             }
 
-            .movie-item h3 {
-                font-size: 18px;
+            .movie-item h3, .game-item h3 {
+                font-size: 16px;
                 color: rgba(255, 255, 255, 0.9);
+                margin: 10px 0;
             }
 
             .movie-item a {
@@ -266,6 +271,18 @@
 
             .movie-item a:hover {
                 color: #ff5722;
+            }
+
+            .game-item img {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+            .game-item:hover {
+                transform: scale(1.05);
+                background-color: rgba(255, 255, 255, 0.2);
             }
 
             .genre-title {
@@ -293,8 +310,37 @@
                 border: none;
             }
 
+            .partners-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                margin-top: 20px;
+            }
+
+            .partner-card {
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 2px solid rgba(255, 255, 255, 0.7);
+                border-radius: 15px;
+                padding: 20px;
+                width: 250px;
+                text-align: center;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .partner-card:hover {
+                transform: scale(1.05);
+            }
+
+            .partner-card img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                margin-bottom: 10px;
+            }
+
             @media (max-width: 768px) {
-                .movie-item {
+                .movie-item, .game-item {
                     width: 45%;
                 }
                 .title {
@@ -306,7 +352,7 @@
             }
 
             @media (max-width: 480px) {
-                .movie-item {
+                .movie-item, .game-item {
                     width: 90%;
                     margin-bottom: 15px;
                 }
@@ -339,7 +385,7 @@
                     <h2 class="sub-title">version 3.2</h2>
                     <div id="online-notice">Enjoy the freedom of being able to watch any show, movie, or play any game you would like.</div>
                     <div class="button-container">
-                        <a href="https://sites.google.com/view/certifiedmath/page_4?authuser=0" class="button">Games</a>
+                        <button class="button" onclick="showGames()">Games</button>
                         <button class="button" onclick="showProxies()">Proxies</button>
                         <button class="button" onclick="showMore()">More</button>
                     </div>
@@ -375,7 +421,7 @@
                     <div class="button-container">
                         <button class="button" onclick="showMovies()">Movies</button>
                         <a href="https://sites.google.com/view/certifiedmath/-?authuser=0" class="button">TV Shows</a>
-                        <a href="https://sites.google.com/view/certifiedmath/page" class="button">Partners</a>
+                        <button class="button" onclick="showPartners()">Partners</button>
                     </div>
                     <br>
                     <a href="#">˗ˏˋ❀ website created & developed by Jordan Alvarado ❀ ´ˎ˗</a>
@@ -518,6 +564,132 @@
                 `;
             }
 
+            function showPartners() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showMore(); return false;">More</a>
+                    <div class="title">
+                        <span class="letter">O</span>
+                        <span class="letter">u</span>
+                        <span class="letter">r</span>
+                        <span class="letter"> </span>
+                        <span class="letter">P</span>
+                        <span class="letter">a</span>
+                        <span class="letter">r</span>
+                        <span class="letter">t</span>
+                        <span class="letter">n</span>
+                        <span class="letter">e</span>
+                        <span class="letter">r</span>
+                        <span class="letter">s</span>
+                    </div>
+                    <h2 class="sub-title">Meet the amazing platforms we collaborate with.</h2>
+                    <div class="partners-container">
+                        <div class="partner-card">
+                            <img src="https://media-hosting.imagekit.io//aeeb82d7fc574c65/RetroArcade.gif?Expires=1836443934&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=CY7FgIR2TMFDPxiSwPPKFq9jnHQc1FtoUMEBoVRGqPJmkoVBBzZu-en-TKtTBaZ-pR61ZiUkcIV88goQUlBPbUEWe0g804rOxyuYyNyKY69GmPn5zzlSRlsAi-kYbDFyHgVCxpH8UaWL~mXva5MrWwSKXe56g2Xaq~Lxo-NDjHZIe7GYTkKmNsmVIoah3pTl7EAPkNIEs8Tp4hAb46YPaYvW46PziI3usdj3JcSYHpPWZc23Q4BPIM2C9qAomohPiyDKXiG~GWwvJx9BNJ-lyOTIwe4F6VpTxYYG3MOcCs2HrAZYrlsw6HPKeuHnDTwVrmP9T1miCdcYzaTuzokByA__" 
+                                 alt="Ultimate Arcade">
+                            <h3>Ultimate Arcade</h3>
+                            <p>Providing top-tier gaming experiences.</p>
+                        </div>
+                        <div class="partner-card">
+                            <img src="https://media-hosting.imagekit.io//17b746b0cfbd4448/media.png?Expires=1836443834&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=aUz2dB~8mNoPOWZj4TfsIHdtdV~98Ns-2uE-w3P-hd-yJKrzXCNoE6VjX~TGw-dsd8Yge7VbqiQoCo5HI4dbfNCpfAAUBOft28nbyCeYBS4~KLBbAQjBPYq67AUy7~wBOZMFscA23YK4kUl7-hihIxKKUDQIAJM2GYsQ82FiA-ouJOE7T1dfZAlcqRDDGzHwtyzojlUF7amo0SbAGoEkeEomXbwdeIAHkbqMedJ5gzMldX206XSUzQAmQMOkWUf6TXdIaf3pD64~QMaRf4uvy~1Dugd9j8wKh77jQGn~9MVOSu1Qt5es5y~QaJ3woWqU7h~9hjV3c4jsNLVjlvZ1qA__" 
+                                 alt="Unblocked Games G+">
+                            <h3>Unblocked Games G+</h3>
+                            <p>Your gateway to the best games.</p>
+                        </div>
+                        <div class="partner-card">
+                            <img src="https://media-hosting.imagekit.io//f8a2694c19434a74/images%20(1).jpeg?Expires=1836444340&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=RJgTYRrmW0mW~V89UjP6jDEQ88LSQSnSjTIJPqQQKjZ~SZSmiEJm7QG7cHtUPC6i333nVeQSLyucr4USB7Om8njFvxYUO7G4JciHDloTlC~E~jt6w~St5k1cccEMd19kRYLA0bKeh8najVoJ5pgotBilf7gBpjIzcHftGHpe4iW3EPvclRRzyapC5x8DrUlQr42hqDmAd1KiiN35~8u8Fo13A2xi9RRit1EXOW0K-6HOx0kGN-QOBiiA9izTZYyjlgPv5eEA6jZZ62-yxGisJmUPDD54h8qd~9tHTrzoos3nnd7QJBlA9B4fYM8GAyzbQynb9BWoecKTcOgbirIUyA__" 
+                                 alt="This Could Be You!">
+                            <h3>This Could Be You!</h3>
+                            <p>Your site could be here!</p>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <button class="button" onclick="showHome()">Back to Home</button>
+                    </div>
+                `;
+            }
+
+            function showGames() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
+                    <div class="title">
+                        <span class="letter">G</span>
+                        <span class="letter">a</span>
+                        <span class="letter">m</span>
+                        <span class="letter">e</span>
+                        <span class="letter">s</span>
+                    </div>
+                    <div class="search-container">
+                        <input type="text" id="game-search" class="search-bar" placeholder="Search Games" oninput="filterGames()">
+                        <button class="search-button" onclick="filterGames()">Search</button>
+                    </div>
+                    <div class="container">
+                        <div class="games-container" id="games-container">
+                            <div class="game-item" onclick="showBasketBros()">
+                                <img src="https://media-hosting.imagekit.io//bcf89a0410b6477f/basket-bros%2520-modified.png?Expires=1836513836&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=gxtdc1y2hlJdfwr2LMwoCNHIOnTk2hD4~O81gXhmBq~X-A8yLJhpn6rAyUTbfSzPWHYeq6N1IfkTdaMzxgmS5DVU4YfyEoV8Fh0D0T1h65TrX9oDzCF3Xb1dov2W5CW~CWyAqRqwT7zCl5ld14o29lR4FiGAEEieGu3MHn0j6s6VcWpduPgDalW2XfC8ZKU4fGMjufZJ-6iaswcs0M76rwEbOtQqig3zYjXwPZh6SKVIl22hzR-i~2jpkKfMughOerl~xlK4j7tkseyc3P86nC6cEziNczT5X8r8wm4UuN7gfpl7dR4iZwXJiusIPUF6VT1iH1cJM5brTv95eTbMVg__" alt="Basket Bros">
+                                <h3>Basket Bros</h3>
+                            </div>
+                            <div class="game-item">
+                                <img src="https://via.placeholder.com/200x150?text=Game+2" alt="Game 2">
+                                <h3>Game 2</h3>
+                            </div>
+                            <div class="game-item">
+                                <img src="https://via.placeholder.com/200x150?text=Game+3" alt="Game 3">
+                                <h3>Game 3</h3>
+                            </div>
+                            <div class="game-item">
+                                <img src="https://via.placeholder.com/200x150?text=Game+4" alt="Game 4">
+                                <h3>Game 4</h3>
+                            </div>
+                            ${Array(40).fill().map((_, i) => `
+                                <div class="game-item">
+                                    <img src="https://via.placeholder.com/200x150?text=Game+${i + 5}" alt="Game ${i + 5}">
+                                    <h3>Game ${i + 5}</h3>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showBasketBros() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <img src="https://media-hosting.imagekit.io/bcf89a0410b6477f/basket-bros%2520(1)-modified.png?Expires=1836513836&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=gxtdc1y2hlJdfwr2LMwoCNHIOnTk2hD4~O81gXhmBq~X-A8yLJhpn6rAyUTbfSzPWHYeq6N1IfkTdaMzxgmS5DVU4YfyEoV8Fh0D0T1h65TrX9oDzCF3Xb1dov2W5CW~CWyAqRqwT7zCl5ld14o29lR4FiGAEEieGu3MHn0j6s6VcWpduPgDalW2XfC8ZKU4fGMjufZJ-6iaswcs0M76rwEbOtQqig3zYjXwPZh6SKVIl22hzR-i~2jpkKfMughOerl~xlK4j7tkseyc3P86nC6cEziNczT5X8r8wm4UuN7gfpl7dR4iZwXJiusIPUF6VT1iH1cJM5brTv95eTbMVg__" 
+                             alt="Basket Bros Logo" 
+                             style="width: 200px; height: auto; margin-bottom: 20px; border-radius: 10px;">
+                        <div class="title">
+                            <span class="letter">B</span>
+                            <span class="letter">a</span>
+                            <span class="letter">s</span>
+                            <span class="letter">k</span>
+                            <span class="letter">e</span>
+                            <span class="letter">t</span>
+                            <span class="letter"> </span>
+                            <span class="letter">B</span>
+                            <span class="letter">r</span>
+                            <span class="letter">o</span>
+                            <span class="letter">s</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/basketbrosio/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function filterGames() {
+                const searchInput = document.getElementById('game-search').value.toLowerCase();
+                const gameItems = document.querySelectorAll('.game-item');
+                gameItems.forEach(item => {
+                    const gameName = item.querySelector('h3').textContent.toLowerCase();
+                    item.style.display = gameName.includes(searchInput) ? 'block' : 'none';
+                });
+            }
+
             // Typewriter Effect for Placeholder Text
             var phrases = [
                 "Search for a game...",
@@ -570,7 +742,7 @@
                 datetimeElement.textContent = formattedDateTime;
             }
 
-            // Search Functionality
+            // Search Functionality for Home Page
             function submitSearch() {
                 var siteSearchUrl = 'https://sites.google.com/search/certifiedmath?query=';
                 var query = document.getElementById("search-query-input").value.trim();
