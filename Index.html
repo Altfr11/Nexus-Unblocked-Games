@@ -1449,3 +1449,69 @@
         </script>
     </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Previous head section remains unchanged -->
+        <style>
+            /* Previous styles remain unchanged up to .back-link */
+
+            .back-link {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                color: rgba(255, 255, 255, 0.9);
+                font-size: 18px;
+                text-decoration: none;
+                padding: 8px 16px;
+                background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+                border: 2px solid rgba(255, 255, 255, 0.7);
+                border-radius: 25px;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+                transition: all 0.3s ease-in-out;
+                z-index: 2;
+                text-transform: uppercase;
+                font-weight: bold;
+                letter-spacing: 1px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .back-link:hover {
+                color: #fff;
+                background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.5));
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+                transform: scale(1.05);
+            }
+
+            .back-link:active {
+                transform: scale(0.95);
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+            }
+
+            .back-link::before {
+                content: "←";
+                font-size: 20px;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .back-link:hover::before {
+                transform: translateX(-5px);
+            }
+
+            /* Remaining styles unchanged */
+        </style>
+    </head>
+    <body>
+        <!-- Previous body content remains unchanged -->
+        <div id="content-side" class="content-side">
+            <!-- Initial content will be loaded by showHome() -->
+        </div>
+
+        <script>
+            // All JavaScript remains unchanged
+        </script>
+    </body>
+</html>
+<link rel="icon" type="image/jpg" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXgr3mmeDdVxLQsi8jqEIXcLajCU69gSep0A&s"/>
