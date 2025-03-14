@@ -54,6 +54,9 @@
                 justify-content: center;
                 align-items: center;
                 color: rgba(255, 255, 255, 0.9);
+                text-align: center;
+                width: 100%;
+                margin-bottom: 20px; /* Added spacing below title */
             }
 
             .letter {
@@ -234,6 +237,9 @@
                 z-index: 1;
                 max-height: 90vh;
                 overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center contents horizontally */
             }
 
             .movie-container, .games-container {
@@ -627,27 +633,85 @@
                     <div class="container">
                         <div class="games-container" id="games-container">
                             <div class="game-item" onclick="showBasketBros()">
-                                <img src="https://media-hosting.imagekit.io//bcf89a0410b6477f/basket-bros%2520-modified.png?Expires=1836513836&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=gxtdc1y2hlJdfwr2LMwoCNHIOnTk2hD4~O81gXhmBq~X-A8yLJhpn6rAyUTbfSzPWHYeq6N1IfkTdaMzxgmS5DVU4YfyEoV8Fh0D0T1h65TrX9oDzCF3Xb1dov2W5CW~CWyAqRqwT7zCl5ld14o29lR4FiGAEEieGu3MHn0j6s6VcWpduPgDalW2XfC8ZKU4fGMjufZJ-6iaswcs0M76rwEbOtQqig3zYjXwPZh6SKVIl22hzR-i~2jpkKfMughOerl~xlK4j7tkseyc3P86nC6cEziNczT5X8r8wm4UuN7gfpl7dR4iZwXJiusIPUF6VT1iH1cJM5brTv95eTbMVg__" alt="Basket Bros">
+                                <img src="https://media-hosting.imagekit.io//bcf89a0410b6477f/basket-bros%2520-modified.png" alt="Basket Bros">
                                 <h3>Basket Bros</h3>
                             </div>
-                            <div class="game-item">
-                                <img src="https://via.placeholder.com/200x150?text=Game+2" alt="Game 2">
-                                <h3>Game 2</h3>
+                            <div class="game-item" onclick="showTabs()">
+                                <img src="https://via.placeholder.com/200x150?text=Tabs" alt="Tabs">
+                                <h3>Tabs</h3>
                             </div>
-                            <div class="game-item">
-                                <img src="https://via.placeholder.com/200x150?text=Game+3" alt="Game 3">
-                                <h3>Game 3</h3>
+                            <div class="game-item" onclick="showCrossy()">
+                                <img src="https://via.placeholder.com/200x150?text=Crossy" alt="Crossy">
+                                <h3>Crossy</h3>
                             </div>
-                            <div class="game-item">
-                                <img src="https://via.placeholder.com/200x150?text=Game+4" alt="Game 4">
-                                <h3>Game 4</h3>
+                            <div class="game-item" onclick="showCookieClicker()">
+                                <img src="https://via.placeholder.com/200x150?text=Cookie+Clicker" alt="Cookie Clicker">
+                                <h3>Cookie Clicker</h3>
                             </div>
-                            ${Array(40).fill().map((_, i) => `
-                                <div class="game-item">
-                                    <img src="https://via.placeholder.com/200x150?text=Game+${i + 5}" alt="Game ${i + 5}">
-                                    <h3>Game ${i + 5}</h3>
-                                </div>
-                            `).join('')}
+                            <div class="game-item" onclick="showClusterRush()">
+                                <img src="https://via.placeholder.com/200x150?text=Cluster+Rush" alt="Cluster Rush">
+                                <h3>Cluster Rush</h3>
+                            </div>
+                            <div class="game-item" onclick="showDriftHunters()">
+                                <img src="https://via.placeholder.com/200x150?text=Drift+Hunters" alt="Drift Hunters">
+                                <h3>Drift Hunters</h3>
+                            </div>
+                            <div class="game-item" onclick="showDinoGame()">
+                                <img src="https://via.placeholder.com/200x150?text=Dino+Game" alt="Dino Game">
+                                <h3>Dino Game</h3>
+                            </div>
+                            <div class="game-item" onclick="showFNF()">
+                                <img src="https://via.placeholder.com/200x150?text=Friday+Night+Funkin" alt="Friday Night Funkin'">
+                                <h3>Friday Night Funkin'</h3>
+                            </div>
+                            <div class="game-item" onclick="showFruitNinja()">
+                                <img src="https://via.placeholder.com/200x150?text=Fruit+Ninja" alt="Fruit Ninja">
+                                <h3>Fruit Ninja</h3>
+                            </div>
+                            <div class="game-item" onclick="showGDLite()">
+                                <img src="https://via.placeholder.com/200x150?text=GD+Lite" alt="GD Lite">
+                                <h3>GD Lite</h3>
+                            </div>
+                            <div class="game-item" onclick="showHappyWheels()">
+                                <img src="https://via.placeholder.com/200x150?text=Happy+Wheels" alt="Happy Wheels">
+                                <h3>Happy Wheels</h3>
+                            </div>
+                            <div class="game-item" onclick="showInfiltratingTheAirship()">
+                                <img src="https://via.placeholder.com/200x150?text=Infiltrating+The+Airship" alt="Infiltrating The Airship">
+                                <h3>Infiltrating The Airship</h3>
+                            </div>
+                            <div class="game-item" onclick="showInfiniteCraft()">
+                                <img src="https://via.placeholder.com/200x150?text=Infinite+Craft" alt="Infinite Craft">
+                                <h3>Infinite Craft</h3>
+                            </div>
+                            <div class="game-item" onclick="showPrecisionClient()">
+                                <img src="https://via.placeholder.com/200x150?text=Precision+Client" alt="Precision Client">
+                                <h3>Precision Client</h3>
+                            </div>
+                            <div class="game-item" onclick="showOvo()">
+                                <img src="https://via.placeholder.com/200x150?text=Ovo" alt="Ovo">
+                                <h3>Ovo</h3>
+                            </div>
+                            <div class="game-item" onclick="showShelbyEdMath()">
+                                <img src="https://via.placeholder.com/200x150?text=Shelby+Ed+Math" alt="Shelby Ed Math">
+                                <h3>Shelby Ed Math</h3>
+                            </div>
+                            <div class="game-item" onclick="showPakoHighway()">
+                                <img src="https://via.placeholder.com/200x150?text=Pako+Highway" alt="Pako Highway">
+                                <h3>Pako Highway</h3>
+                            </div>
+                            <div class="game-item" onclick="showRetroBowl()">
+                                <img src="https://via.placeholder.com/200x150?text=Retro+Bowl" alt="Retro Bowl">
+                                <h3>Retro Bowl</h3>
+                            </div>
+                            <div class="game-item" onclick="showRocketSoccer()">
+                                <img src="https://via.placeholder.com/200x150?text=Rocket+Soccer" alt="Rocket Soccer">
+                                <h3>Rocket Soccer</h3>
+                            </div>
+                            <div class="game-item" onclick="showSkibidi1v100()">
+                                <img src="https://via.placeholder.com/200x150?text=Skibidi+1v100" alt="Skibidi 1v100">
+                                <h3>Skibidi 1v100</h3>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -658,24 +722,336 @@
                 contentSide.innerHTML = `
                     <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
                     <div class="container">
-                        <img src="https://media-hosting.imagekit.io/bcf89a0410b6477f/basket-bros%2520(1)-modified.png?Expires=1836513836&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=gxtdc1y2hlJdfwr2LMwoCNHIOnTk2hD4~O81gXhmBq~X-A8yLJhpn6rAyUTbfSzPWHYeq6N1IfkTdaMzxgmS5DVU4YfyEoV8Fh0D0T1h65TrX9oDzCF3Xb1dov2W5CW~CWyAqRqwT7zCl5ld14o29lR4FiGAEEieGu3MHn0j6s6VcWpduPgDalW2XfC8ZKU4fGMjufZJ-6iaswcs0M76rwEbOtQqig3zYjXwPZh6SKVIl22hzR-i~2jpkKfMughOerl~xlK4j7tkseyc3P86nC6cEziNczT5X8r8wm4UuN7gfpl7dR4iZwXJiusIPUF6VT1iH1cJM5brTv95eTbMVg__" 
-                             alt="Basket Bros Logo" 
-                             style="width: 200px; height: auto; margin-bottom: 20px; border-radius: 10px;">
                         <div class="title">
-                            <span class="letter">B</span>
-                            <span class="letter">a</span>
-                            <span class="letter">s</span>
-                            <span class="letter">k</span>
-                            <span class="letter">e</span>
-                            <span class="letter">t</span>
+                            <span class="letter">B</span><span class="letter">a</span><span class="letter">s</span><span class="letter">k</span><span class="letter">e</span><span class="letter">t</span>
                             <span class="letter"> </span>
-                            <span class="letter">B</span>
-                            <span class="letter">r</span>
-                            <span class="letter">o</span>
-                            <span class="letter">s</span>
+                            <span class="letter">B</span><span class="letter">r</span><span class="letter">o</span><span class="letter">s</span>
                         </div>
                         <div class="iframe-container">
                             <iframe src="https://bluwarp-is-terrible.netlify.app/games/basketbrosio/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showTabs() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">T</span><span class="letter">a</span><span class="letter">b</span><span class="letter">s</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/tabs/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showCrossy() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">C</span><span class="letter">r</span><span class="letter">o</span><span class="letter">s</span><span class="letter">s</span><span class="letter">y</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/crossy/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showCookieClicker() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">C</span><span class="letter">o</span><span class="letter">o</span><span class="letter">k</span><span class="letter">i</span><span class="letter">e</span>
+                            <span class="letter"> </span>
+                            <span class="letter">C</span><span class="letter">l</span><span class="letter">i</span><span class="letter">c</span><span class="letter">k</span><span class="letter">e</span><span class="letter">r</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/cookieclicker/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showClusterRush() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">C</span><span class="letter">l</span><span class="letter">u</span><span class="letter">s</span><span class="letter">t</span><span class="letter">e</span><span class="letter">r</span>
+                            <span class="letter"> </span>
+                            <span class="letter">R</span><span class="letter">u</span><span class="letter">s</span><span class="letter">h</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/clusterrush/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showDriftHunters() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">D</span><span class="letter">r</span><span class="letter">i</span><span class="letter">f</span><span class="letter">t</span>
+                            <span class="letter"> </span>
+                            <span class="letter">H</span><span class="letter">u</span><span class="letter">n</span><span class="letter">t</span><span class="letter">e</span><span class="letter">r</span><span class="letter">s</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/drifthunters/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showDinoGame() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">D</span><span class="letter">i</span><span class="letter">n</span><span class="letter">o</span>
+                            <span class="letter"> </span>
+                            <span class="letter">G</span><span class="letter">a</span><span class="letter">m</span><span class="letter">e</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/dinogame/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showFNF() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">F</span><span class="letter">r</span><span class="letter">i</span><span class="letter">d</span><span class="letter">a</span><span class="letter">y</span>
+                            <span class="letter"> </span>
+                            <span class="letter">N</span><span class="letter">i</span><span class="letter">g</span><span class="letter">h</span><span class="letter">t</span>
+                            <span class="letter"> </span>
+                            <span class="letter">F</span><span class="letter">u</span><span class="letter">n</span><span class="letter">k</span><span class="letter">i</span><span class="letter">n</span><span class="letter">'</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/fnf/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showFruitNinja() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">F</span><span class="letter">r</span><span class="letter">u</span><span class="letter">i</span><span class="letter">t</span>
+                            <span class="letter"> </span>
+                            <span class="letter">N</span><span class="letter">i</span><span class="letter">n</span><span class="letter">j</span><span class="letter">a</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/fruitninja/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showGDLite() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">G</span><span class="letter">D</span>
+                            <span class="letter"> </span>
+                            <span class="letter">L</span><span class="letter">i</span><span class="letter">t</span><span class="letter">e</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/gdlite/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showHappyWheels() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">H</span><span class="letter">a</span><span class="letter">p</span><span class="letter">p</span><span class="letter">y</span>
+                            <span class="letter"> </span>
+                            <span class="letter">W</span><span class="letter">h</span><span class="letter">e</span><span class="letter">e</span><span class="letter">l</span><span class="letter">s</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/happywheels/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showInfiltratingTheAirship() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">I</span><span class="letter">n</span><span class="letter">f</span><span class="letter">i</span><span class="letter">l</span><span class="letter">t</span><span class="letter">r</span><span class="letter">a</span><span class="letter">t</span><span class="letter">i</span><span class="letter">n</span><span class="letter">g</span>
+                            <span class="letter"> </span>
+                            <span class="letter">T</span><span class="letter">h</span><span class="letter">e</span>
+                            <span class="letter"> </span>
+                            <span class="letter">A</span><span class="letter">i</span><span class="letter">r</span><span class="letter">s</span><span class="letter">h</span><span class="letter">i</span><span class="letter">p</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/infiltratingtheairship/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showInfiniteCraft() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">I</span><span class="letter">n</span><span class="letter">f</span><span class="letter">i</span><span class="letter">n</span><span class="letter">i</span><span class="letter">t</span><span class="letter">e</span>
+                            <span class="letter"> </span>
+                            <span class="letter">C</span><span class="letter">r</span><span class="letter">a</span><span class="letter">f</span><span class="letter">t</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/infinitecraft/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showPrecisionClient() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">P</span><span class="letter">r</span><span class="letter">e</span><span class="letter">c</span><span class="letter">i</span><span class="letter">s</span><span class="letter">i</span><span class="letter">o</span><span class="letter">n</span>
+                            <span class="letter"> </span>
+                            <span class="letter">C</span><span class="letter">l</span><span class="letter">i</span><span class="letter">e</span><span class="letter">n</span><span class="letter">t</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/precisionclient/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showOvo() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">O</span><span class="letter">v</span><span class="letter">o</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/ovo/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showShelbyEdMath() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">S</span><span class="letter">h</span><span class="letter">e</span><span class="letter">l</span><span class="letter">b</span><span class="letter">y</span>
+                            <span class="letter"> </span>
+                            <span class="letter">E</span><span class="letter">d</span>
+                            <span class="letter"> </span>
+                            <span class="letter">M</span><span class="letter">a</span><span class="letter">t</span><span class="letter">h</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://shelbyed-math.netlify.app/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showPakoHighway() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">P</span><span class="letter">a</span><span class="letter">k</span><span class="letter">o</span>
+                            <span class="letter"> </span>
+                            <span class="letter">H</span><span class="letter">i</span><span class="letter">g</span><span class="letter">h</span><span class="letter">w</span><span class="letter">a</span><span class="letter">y</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/pakohighway/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showRetroBowl() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">R</span><span class="letter">e</span><span class="letter">t</span><span class="letter">r</span><span class="letter">o</span>
+                            <span class="letter"> </span>
+                            <span class="letter">B</span><span class="letter">o</span><span class="letter">w</span><span class="letter">l</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/retrobowl/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showRocketSoccer() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">R</span><span class="letter">o</span><span class="letter">c</span><span class="letter">k</span><span class="letter">e</span><span class="letter">t</span>
+                            <span class="letter"> </span>
+                            <span class="letter">S</span><span class="letter">o</span><span class="letter">c</span><span class="letter">c</span><span class="letter">e</span><span class="letter">r</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/rocketsoccer/" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function showSkibidi1v100() {
+                const contentSide = document.getElementById('content-side');
+                contentSide.innerHTML = `
+                    <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+                    <div class="container">
+                        <div class="title">
+                            <span class="letter">S</span><span class="letter">k</span><span class="letter">i</span><span class="letter">b</span><span class="letter">i</span><span class="letter">d</span><span class="letter">i</span>
+                            <span class="letter"> </span>
+                            <span class="letter">1</span><span class="letter">v</span><span class="letter">1</span><span class="letter">0</span><span class="letter">0</span>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://bluwarp-is-terrible.netlify.app/games/skibidi1v100/" allowfullscreen></iframe>
                         </div>
                     </div>
                 `;
