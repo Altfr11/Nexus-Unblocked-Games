@@ -424,7 +424,7 @@
     typewriterEffect();
 }
 
-            function showSettings() {
+        function showSettings() {
     const contentSide = document.getElementById('content-side');
     contentSide.innerHTML = `
         <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
@@ -440,17 +440,21 @@
         </div>
         <div class="settings-section">
             <div class="settings-option">
-                <label for="tab-title">Tab Title Cloaker:</label>
+                <label for="tab-title">Tab Title:</label>
                 <input type="text" id="tab-title" placeholder="Enter custom tab title">
-                <button onclick="updateTabTitle()">Apply</button>
+            </div>
+            <div class="settings-option">
+                <label for="favicon-url">Custom Favicon URL:</label>
+                <input type="text" id="favicon-url" placeholder="Enter favicon URL (e.g., https://example.com/favicon.ico)">
+                <button onclick="updateTabTitleAndFavicon()">Apply</button>
             </div>
             <div class="settings-option">
                 <label for="background-theme">Background Theme:</label>
                 <select id="background-theme" onchange="changeBackground()">
                     <option value="default">Default (Sand Dunes)</option>
-                    <option value="cosmos">Cosmos</option>
-                    <option value="aurora">Aurora</option>
-                    <option value="cyber">Cyber Grid</option>
+                    <option value="Blue Lake">Blue Lake</option>
+                    <option value="Nature">Nature</option>
+                    <option value="Space planet">Space planet</option>
                 </select>
             </div>
         </div>
@@ -1432,10 +1436,35 @@ function showRocketScience() {
             }
 
             // Initialize on page load
-            window.onload = function() {
-                showHome();
-                setInterval(updateDateTime, 1000);
-            };
+           window.onload = function() {
+    showHome();
+    setInterval(updateDateTime, 1000);
+    
+    // Load saved settings
+    const savedTitle = localStorage.getItem('customTitle');
+    if (savedTitle) {
+        document.title = savedTitle;
+    }
+
+    const savedFavicon = localStorage.getItem('customFavicon');
+    if (savedFavicon) {
+        let link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+        link.type = 'image/x-icon';
+        link.rel = 'shortcut icon';
+        link.href = savedFavicon;
+        document.getElementsByTagName('head')[0].appendChild(link);
+    }
+
+    const savedTheme = localStorage.getItem('backgroundTheme');
+    if (savedTheme) {
+        document.body.style.backgroundImage = {
+            'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
+            'blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
+            'Nature': 'url("https://wallpapers-clan.com/wp-content/uploads/2024/12/summer-river-wooden-bridge-desktop-wallpaper-preview.jpg")',
+            'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
+        }[savedTheme];
+    }
+};
         </script>
     </body>
 </html>
@@ -1452,11 +1481,24 @@ function showRocketScience() {
         <script>
             // Previous functions (showHome, showMore, showMovies, showProxies, showPartners) remain unchanged
 
-            function updateTabTitle() {
+          function updateTabTitleAndFavicon() {
     const title = document.getElementById('tab-title').value;
+    const faviconUrl = document.getElementById('favicon-url').value;
+
+    // Update tab title if provided
     if (title.trim() !== '') {
         document.title = title;
         localStorage.setItem('customTitle', title);
+    }
+
+    // Update favicon if provided
+    if (faviconUrl.trim() !== '') {
+        let link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+        link.type = 'image/x-icon';
+        link.rel = 'shortcut icon';
+        link.href = faviconUrl;
+        document.getElementsByTagName('head')[0].appendChild(link);
+        localStorage.setItem('customFavicon', faviconUrl);
     }
 }
 
@@ -1465,9 +1507,9 @@ function changeBackground() {
     const body = document.body;
     const backgrounds = {
         'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
-        'cosmos': 'url("https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=2085&auto=format&fit=crop")',
-        'aurora': 'url("https://images.unsplash.com/photo-1517501691265-c1df99db2e31?q=80&w=2087&auto=format&fit=crop")',
-        'cyber': 'url("https://images.unsplash.com/photo-1612450636068-acea9ddfe3ea?q=80&w=2087&auto=format&fit=crop")'
+        'Blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
+        'Nature': 'url("https://wallpapers-clan.com/wp-content/uploads/2024/12/summer-river-wooden-bridge-desktop-wallpaper-preview.jpg")',
+        'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
     };
 
     body.style.backgroundImage = backgrounds[theme];
