@@ -396,34 +396,67 @@
         </div>
 
         <script>
-            function showHome() {
-                const contentSide = document.getElementById('content-side');
-                contentSide.innerHTML = `
-                    <div class="title">
-                        <span class="letter">𝖀</span>
-                        <span class="letter">𝖙</span>
-                        <span class="letter">𝖔</span>
-                        <span class="letter">𝖕</span>
-                        <span class="letter">𝖎</span>
-                        <span class="letter">𝖆</span>
-                    </div>
-                    <h2 class="sub-title">Version 3.3 Netlify</h2>
-                    <div id="online-notice">Enjoy the freedom of being able to watch any show, movie, or play any game you would like.</div>
-                    <div class="button-container">
-                        <button class="button" onclick="showGames()">Games</button>
-                        <button class="button" onclick="showProxies()">Proxies</button>
-                        <button class="button" onclick="showMore()">More</button>
-                    </div>
-                    <br>
-                    <a href="#">˗ˏˋ❀ Website Created And Developed By Jordan A. ❀ ´ˎ˗</a>
-                    <br>
-       
-                    <div class="datetime" id="datetime"></div>
-                `;
-                updateDateTime();
-                typewriterEffect();
-            }
+           function showHome() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <div class="title">
+            <span class="letter">𝖀</span>
+            <span class="letter">𝖙</span>
+            <span class="letter">𝖔</span>
+            <span class="letter">𝖕</span>
+            <span class="letter">𝖎</span>
+            <span class="letter">𝖆</span>
+        </div>
+        <h2 class="sub-title">Version 3.3 Netlify</h2>
+        <div id="online-notice">Enjoy the freedom of being able to watch any show, movie, or play any game you would like.</div>
+        <div class="button-container">
+            <button class="button" onclick="showGames()">Games</button>
+            <button class="button" onclick="showProxies()">Proxies</button>
+            <button class="button" onclick="showMore()">More</button>
+            <button class="button" onclick="showSettings()">Settings</button>
+        </div>
+        <br>
+        <a href="#">˗ˏˋ❀ website created & developed by Jordan Alvarado ❀ ´ˎ˗</a>
+        <br>
+        <div class="datetime" id="datetime"></div>
+    `;
+    updateDateTime();
+    typewriterEffect();
+}
 
+            function showSettings() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
+        <div class="title">
+            <span class="letter">S</span>
+            <span class="letter">e</span>
+            <span class="letter">t</span>
+            <span class="letter">t</span>
+            <span class="letter">i</span>
+            <span class="letter">n</span>
+            <span class="letter">g</span>
+            <span class="letter">s</span>
+        </div>
+        <div class="settings-section">
+            <div class="settings-option">
+                <label for="tab-title">Tab Title Cloaker:</label>
+                <input type="text" id="tab-title" placeholder="Enter custom tab title">
+                <button onclick="updateTabTitle()">Apply</button>
+            </div>
+            <div class="settings-option">
+                <label for="background-theme">Background Theme:</label>
+                <select id="background-theme" onchange="changeBackground()">
+                    <option value="default">Default (Sand Dunes)</option>
+                    <option value="cosmos">Cosmos</option>
+                    <option value="aurora">Aurora</option>
+                    <option value="cyber">Cyber Grid</option>
+                </select>
+            </div>
+        </div>
+    `;
+}
+            
             function showMore() {
                 const contentSide = document.getElementById('content-side');
                 contentSide.innerHTML = `
@@ -1419,6 +1452,28 @@ function showRocketScience() {
         <script>
             // Previous functions (showHome, showMore, showMovies, showProxies, showPartners) remain unchanged
 
+            function updateTabTitle() {
+    const title = document.getElementById('tab-title').value;
+    if (title.trim() !== '') {
+        document.title = title;
+        localStorage.setItem('customTitle', title);
+    }
+}
+
+function changeBackground() {
+    const theme = document.getElementById('background-theme').value;
+    const body = document.body;
+    const backgrounds = {
+        'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
+        'cosmos': 'url("https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=2085&auto=format&fit=crop")',
+        'aurora': 'url("https://images.unsplash.com/photo-1517501691265-c1df99db2e31?q=80&w=2087&auto=format&fit=crop")',
+        'cyber': 'url("https://images.unsplash.com/photo-1612450636068-acea9ddfe3ea?q=80&w=2087&auto=format&fit=crop")'
+    };
+
+    body.style.backgroundImage = backgrounds[theme];
+    localStorage.setItem('backgroundTheme', theme);
+}
+
            function showGames() {
     const contentSide = document.getElementById('content-side');
     contentSide.innerHTML = `
@@ -1761,6 +1816,53 @@ function showRocketScience() {
         <!-- Previous head section remains unchanged -->
         <style>
             /* Previous styles remain unchanged up to .back-link */
+            .settings-section {
+    margin: 20px 0;
+    width: 80%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.settings-option {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.settings-option label {
+    display: block;
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+}
+
+.settings-option input,
+.settings-option select {
+    width: 100%;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+}
+
+.settings-option button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    padding: 8px 15px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.settings-option button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
 
             .back-link {
                 position: absolute;
