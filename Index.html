@@ -403,7 +403,7 @@
                         <button class="button" onclick="showMore()">More</button>
                     </div>
                     <br>
-                    <a href="#">˗ˏˋ❀ website created & developed by Jordan Alvarado ❀ ´ˎ˗</a>
+                    <a href="#">˗ˏˋ❀ Website Created And Developed By Jordan A. ❀ ´ˎ˗</a>
                     <br>
        
                     <div class="datetime" id="datetime"></div>
@@ -1265,7 +1265,35 @@ function showFlappy() {
         </div>
     `;
 }
+function showChanginMath() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+        <div class="container">
+            <div class="title">
+              
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://channginmathisfun.netlify.app/" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+}
+
+function showRocketScience() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+        <div class="container">
+            <div class="title">
             
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://rocketscience123.netlify.app/" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+}            
       function filterGames() {
     const searchInput = document.getElementById('game-search');
     if (!searchInput) {
@@ -1396,6 +1424,14 @@ function showFlappy() {
         </div>
         <div class="container">
                         <div class="games-container" id="games-container">
+                        <div class="game-item" onclick="showChanginMath()">
+    <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ4CSkYGqKz1TcPzd-VHfg75djXz7yWLzLhj3myMPmN3hMS5dRbRnQDyOoxuhH9K9LAIC95" alt="Changin Math">
+    <h3>Smash Karts</h3>
+</div>
+<div class="game-item" onclick="showRocketScience()">
+    <img src="https://hyhygames.com/thumbs/blumgi-rocket-game-blumgi-rocket-1.webp" alt="Rocket Science">
+    <h3>Blumgi Rocket</h3>
+</div>
                         <!-- Add these after Stickman Climb and before </div> in games-container -->
 <div class="game-item" onclick="showRun3Plus()">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT93c_LkpCb0ysBZOUQ_JW7qbH85r95LTLm_T4VgT87htxUkYU_BzDdN3w2K-M4XiS6xGk&usqp=CAU" alt="Run 3 Plus">
