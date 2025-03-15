@@ -46,17 +46,19 @@
                 z-index: 1;
             }
 
-            .title {
-                font-size: 60px;
-                font-weight: bold;
-                letter-spacing: 2px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: rgba(255, 255, 255, 0.9);
-                text-align: center;
-                width: 100%;
-                margin-bottom: 20px; /* Added spacing below title */
+           .title {
+    font-size: 40px; /* Smaller to fit */
+    font-weight: bold;
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-top: 40px; /* Space from top */
+}
             }
 
             .letter {
@@ -107,12 +109,12 @@
                 font-style: italic;
             }
 
-            .search-container {
-                margin: 20px 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        .search-container {
+    margin-top: 60px; /* Lower it */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
             .search-bar {
                 background-color: rgba(255, 255, 255, 0.1);
@@ -242,49 +244,54 @@
                 align-items: center; /* Center contents horizontally */
             }
 
-            .movie-container, .games-container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-                justify-content: center;
-            }
+           .games-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between items */
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px; /* Fits 5 items of 220px + gaps */
+}
 
-            .movie-item, .game-item {
-                width: 200px;
-                padding: 10px;
-                background-color: rgba(255, 255, 255, 0.1);
-                border: 2px solid rgba(255, 255, 255, 0.7);
-                border-radius: 10px;
-                text-align: center;
-                transition: transform 0.3s ease-in-out, background-color 0.3s ease;
-                cursor: pointer;
-            }
+            .movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
 
-            .movie-item h3, .game-item h3 {
-                font-size: 16px;
-                color: rgba(255, 255, 255, 0.9);
-                margin: 10px 0;
-            }
-
-            .movie-item a {
-                display: block;
-                margin-top: 10px;
-                font-size: 16px;
-                color: #00bcd4;
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
-
-            .movie-item a:hover {
-                color: #ff5722;
-            }
-
-            .game-item img {
-                width: 100%;
-                height: 150px;
-                object-fit: cover;
-                border-radius: 8px;
-            }
+.movie-item {
+    width: 200px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+    cursor: pointer;
+}
+            
+            .game-item {
+    width: 220px; /* Fixed size for 5 per row (1200px / 5 ≈ 240px, adjusted for gaps) */
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box; /* Keeps padding/border within width */
+}
+.game-item:hover {
+    transform: scale(1.05); /* Old hover effect */
+    background-color: rgba(255, 255, 255, 0.2); /* Old hover effect */
+}
+.game-item img {
+    width: 100%;
+    height: 150px; /* Consistent icon height */
+    object-fit: cover; /* Keeps icon theme */
+    border-radius: 8px;
+}
 
             .game-item:hover {
                 transform: scale(1.05);
