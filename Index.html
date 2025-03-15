@@ -1532,6 +1532,30 @@ function changeBackground() {
         </div>
         <div class="container">
                         <div class="games-container" id="games-container">
+                        <div class="game-item" onclick="showDriftBoss()">
+                    <img src="https://drifted.com/_next/image/?url=https%3A%2F%2Fimages.drifted.com%2Fmedia%2F2024%2F03%2FDrift-Boss-Game.jpg&w=3840&q=75" alt="Drift Boss">
+                    <h3>Drift Boss</h3>
+                </div>
+                <div class="game-item" onclick="showSuperHot()">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/9/9f/Superhot_Cover_Art.jpg" alt="Super Hot">
+                    <h3>Super Hot</h3>
+                </div>
+                <div class="game-item" onclick="showTetris()">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/9/9f/Tetris_1984.png" alt="Tetris">
+                    <h3>Tetris</h3>
+                </div>
+                <div class="game-item" onclick="showRooftop()">
+                    <img src="https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/092fc2eecf81cfae22b4aead941d13cc.png" alt="Rooftop Snipers">
+                    <h3>Rooftop Snipers</h3>
+                </div>
+                <div class="game-item" onclick="showRecoil()">
+                    <img src="https://images.crazygames.com/recoil/20231115105840/recoil-cover?auto=format%2Ccompress&q=45&cs=strip&ch=DPR&w=314&h=314&fit=crop" alt="Recoil">
+                    <h3>Recoil</h3>
+                </div>
+                <div class="game-item" onclick="showBackrooms2D()">
+                    <img src="https://images.crazygames.com/the-backrooms-game/20231107105847/the-backrooms-game-cover?auto=format%2Ccompress&q=45&cs=strip&ch=DPR&w=314&h=314&fit=crop" alt="Backrooms 2D">
+                    <h3>Backrooms 2D</h3>
+                </div>
                         <div class="game-item" onclick="showChanginMath()">
     <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ4CSkYGqKz1TcPzd-VHfg75djXz7yWLzLhj3myMPmN3hMS5dRbRnQDyOoxuhH9K9LAIC95" alt="Changin Math">
     <h3>Smash Karts</h3>
@@ -1846,6 +1870,89 @@ function changeBackground() {
                     </div>
                 `;
             }
+            function showDriftBoss() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+        <div class="container">
+            <div class="title">
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://bluwarp-is-terrible.netlify.app/games/driftboss/" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+}
+
+function showSuperHot() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+        <div class="container">
+            <div class="title">
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://bluwarp-is-terrible.netlify.app/games/superhot/" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+}
+
+function showTetris() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+        <div class="container">
+            <div class="title">
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://bluwarp-is-terrible.netlify.app/games/tetris/" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+}
+
+function showRooftop() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+        <div class="container">
+            <div class="title">
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://bluwarp-is-terrible.netlify.app/games/rooftop/" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+}
+
+function showRecoil() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+        <div class="container">
+            <div class="title">
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://bluwarp-is-terrible.netlify.app/games/recoil/" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+}
+
+function showBackrooms2D() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+        <div class="container">
+            <div class="title">
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://bluwarp-is-terrible.netlify.app/games/backrooms2d/" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+}
 
             // Remaining functions (filterGames, typewriterEffect, updateDateTime, submitSearch, searchKeyPress, window.onload) remain unchanged
         </script>
