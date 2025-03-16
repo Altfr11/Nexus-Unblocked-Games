@@ -1532,6 +1532,10 @@ function changeBackground() {
         </div>
         <div class="container">
                         <div class="games-container" id="games-container">
+                        <div class="game-item" onclick="showMonkeyMart()">
+                    <img src="https://play-lh.googleusercontent.com/rWReIdyvDaYJPeOxn7hbC0b-96ixGpQKM_EndiQa3SUME8TtI_rNUcI4qsw5teK9mqk" alt="Monkey Mart">
+                    <h3>Monkey Mart</h3>
+                </div>
                         <div class="game-item" onclick="showDriftBoss()">
                     <img src="https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/baf55f009fd63dd63c760a5dcfe79615.png" alt="Drift Boss">
                     <h3>Drift Boss</h3>
@@ -1949,6 +1953,19 @@ function showBackrooms2D() {
             </div>
             <div class="iframe-container">
                 <iframe src="https://bluwarp-is-terrible.netlify.app/games/backrooms2d/" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+}
+            function showMonkeyMart() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+        <div class="container">
+            <div class="title">
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://bluwarp-is-terrible.netlify.app/games/monkeymart/" allowfullscreen></iframe>
             </div>
         </div>
     `;
