@@ -424,7 +424,7 @@
     typewriterEffect();
 }
 
-      function showSettings() {
+   function showSettings() {
     const contentSide = document.getElementById('content-side');
     contentSide.innerHTML = `
         <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
@@ -480,8 +480,11 @@
 
     if (savedPanicKey) document.getElementById('panic-key').value = savedPanicKey;
     if (savedPanicUrl) document.getElementById('panic-url').value = savedPanicUrl;
-    if (savedBackgroundTheme) document.getElementById('background-theme').value = savedBackgroundTheme;
+    document.getElementById('background-theme').value = savedBackgroundTheme;
     if (savedCustomBackground) document.getElementById('custom-background-url').value = savedCustomBackground;
+
+    // Apply the saved background immediately when Settings loads
+    applySavedBackground();
 }
 
 function changeBackground() {
@@ -494,31 +497,26 @@ function changeBackground() {
         'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
     };
 
-    // Apply the selected predefined theme and clear any custom background
+    // Apply the selected theme and clear custom background
     body.style.backgroundImage = backgrounds[theme];
     localStorage.setItem('backgroundTheme', theme);
-    localStorage.removeItem('customBackgroundUrl'); // Clear custom URL when switching to a theme
-    document.getElementById('custom-background-url').value = ''; // Clear the input field
+    localStorage.removeItem('customBackgroundUrl');
+    document.getElementById('custom-background-url').value = ''; // Clear the custom URL input
 }
 
 function applyCustomBackground() {
     const customUrl = document.getElementById('custom-background-url').value.trim();
     if (customUrl) {
-        // Apply the custom background immediately
         document.body.style.backgroundImage = `url("${customUrl}")`;
-        // Save to localStorage
         localStorage.setItem('customBackgroundUrl', customUrl);
-        // Optional: Reset the theme dropdown to 'default' since custom overrides it
-        document.getElementById('background-theme').value = 'default';
+        // Reset theme to default but keep custom URL as priority
         localStorage.setItem('backgroundTheme', 'default');
     } else {
         alert('Please enter a valid image URL.');
     }
 }
 
-// Load saved background on page load
-window.onload = function() {
-    showHome(); // Keep your existing onload behavior
+function applySavedBackground() {
     const savedCustomUrl = localStorage.getItem('customBackgroundUrl');
     const savedTheme = localStorage.getItem('backgroundTheme') || 'default';
     const backgrounds = {
@@ -529,14 +527,17 @@ window.onload = function() {
     };
 
     if (savedCustomUrl) {
-        // If a custom URL exists, apply it regardless of the saved theme
         document.body.style.backgroundImage = `url("${savedCustomUrl}")`;
     } else {
-        // Otherwise, apply the saved theme
         document.body.style.backgroundImage = backgrounds[savedTheme];
     }
-};
+}
 
+// Load saved background on page load
+window.onload = function() {
+    showHome();
+    applySavedBackground(); // Apply the saved background immediately
+};
 // Keep your existing updateTabTitleAndFaviconAndPanic() function unchanged
             
             function showMore() {
