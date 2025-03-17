@@ -424,7 +424,7 @@
     typewriterEffect();
 }
 
-       function showSettings() {
+      function showSettings() {
     const contentSide = document.getElementById('content-side');
     contentSide.innerHTML = `
         <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
@@ -465,14 +465,79 @@
                     <option value="Space planet">Space planet</option>
                 </select>
             </div>
+            <div class="settings-option">
+                <label for="custom-background-url">Custom Background URL:</label>
+                <input type="text" id="custom-background-url" placeholder="Enter image URL (e.g., https://example.com/image.jpg)">
+                <button onclick="applyCustomBackground()">Apply</button>
+            </div>
         </div>
     `;
     // Pre-fill saved values
     const savedPanicKey = localStorage.getItem('panicKey');
     const savedPanicUrl = localStorage.getItem('panicUrl');
+    const savedBackgroundTheme = localStorage.getItem('backgroundTheme') || 'default';
+    const savedCustomBackground = localStorage.getItem('customBackgroundUrl');
+
     if (savedPanicKey) document.getElementById('panic-key').value = savedPanicKey;
     if (savedPanicUrl) document.getElementById('panic-url').value = savedPanicUrl;
+    if (savedBackgroundTheme) document.getElementById('background-theme').value = savedBackgroundTheme;
+    if (savedCustomBackground) document.getElementById('custom-background-url').value = savedCustomBackground;
 }
+
+function changeBackground() {
+    const theme = document.getElementById('background-theme').value;
+    const body = document.body;
+    const backgrounds = {
+        'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
+        'Blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
+        'Nature': 'url("https://wallpapers-clan.com/wp-content/uploads/2024/12/summer-river-wooden-bridge-desktop-wallpaper-preview.jpg")',
+        'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
+    };
+
+    // Apply the selected predefined theme and clear any custom background
+    body.style.backgroundImage = backgrounds[theme];
+    localStorage.setItem('backgroundTheme', theme);
+    localStorage.removeItem('customBackgroundUrl'); // Clear custom URL when switching to a theme
+    document.getElementById('custom-background-url').value = ''; // Clear the input field
+}
+
+function applyCustomBackground() {
+    const customUrl = document.getElementById('custom-background-url').value.trim();
+    if (customUrl) {
+        // Apply the custom background immediately
+        document.body.style.backgroundImage = `url("${customUrl}")`;
+        // Save to localStorage
+        localStorage.setItem('customBackgroundUrl', customUrl);
+        // Optional: Reset the theme dropdown to 'default' since custom overrides it
+        document.getElementById('background-theme').value = 'default';
+        localStorage.setItem('backgroundTheme', 'default');
+    } else {
+        alert('Please enter a valid image URL.');
+    }
+}
+
+// Load saved background on page load
+window.onload = function() {
+    showHome(); // Keep your existing onload behavior
+    const savedCustomUrl = localStorage.getItem('customBackgroundUrl');
+    const savedTheme = localStorage.getItem('backgroundTheme') || 'default';
+    const backgrounds = {
+        'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
+        'Blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
+        'Nature': 'url("https://wallpapers-clan.com/wp-content/uploads/2024/12/summer-river-wooden-bridge-desktop-wallpaper-preview.jpg")',
+        'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
+    };
+
+    if (savedCustomUrl) {
+        // If a custom URL exists, apply it regardless of the saved theme
+        document.body.style.backgroundImage = `url("${savedCustomUrl}")`;
+    } else {
+        // Otherwise, apply the saved theme
+        document.body.style.backgroundImage = backgrounds[savedTheme];
+    }
+};
+
+// Keep your existing updateTabTitleAndFaviconAndPanic() function unchanged
             
             function showMore() {
                 const contentSide = document.getElementById('content-side');
@@ -2021,7 +2086,7 @@ function showBackrooms2D() {
         <!-- Previous head section remains unchanged -->
         <style>
             /* Previous styles remain unchanged up to .back-link */
-            .settings-section {
+        .settings-section {
     margin: 20px 0;
     width: 80%;
     max-width: 500px;
