@@ -423,7 +423,7 @@
     typewriterEffect();
 }
 
- function showSettings() {
+function showSettings() {
     const contentSide = document.getElementById('content-side');
     contentSide.innerHTML = `
         <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
@@ -482,8 +482,7 @@
     document.getElementById('background-theme').value = savedBackgroundTheme;
     if (savedCustomBackground) document.getElementById('custom-background-url').value = savedCustomBackground;
 
-    // Apply the saved background when Settings is opened
-    applySavedBackground();
+    applySavedBackground(); // Apply saved background when Settings loads
 }
 
 function changeBackground() {
@@ -500,6 +499,7 @@ function changeBackground() {
     localStorage.setItem('backgroundTheme', theme);
     localStorage.removeItem('customBackgroundUrl');
     document.getElementById('custom-background-url').value = '';
+    console.log('Theme applied:', theme); // Debug log
 }
 
 function applyCustomBackground() {
@@ -508,6 +508,7 @@ function applyCustomBackground() {
         document.body.style.backgroundImage = `url("${customUrl}")`;
         localStorage.setItem('customBackgroundUrl', customUrl);
         localStorage.setItem('backgroundTheme', 'default'); // Reset theme to default
+        console.log('Custom URL applied:', customUrl); // Debug log
     } else {
         alert('Please enter a valid image URL.');
     }
@@ -523,24 +524,22 @@ function applySavedBackground() {
         'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
     };
 
+    console.log('Applying saved background. Custom URL:', savedCustomUrl, 'Theme:', savedTheme); // Debug log
     if (savedCustomUrl) {
         document.body.style.backgroundImage = `url("${savedCustomUrl}")`;
-    } else {
+    } else if (savedTheme && backgrounds[savedTheme]) {
         document.body.style.backgroundImage = backgrounds[savedTheme];
+    } else {
+        document.body.style.backgroundImage = backgrounds['default']; // Fallback
     }
 }
 
-// Ensure background persists on page load
+// Apply saved background on page load
 document.addEventListener('DOMContentLoaded', function() {
-    applySavedBackground(); // Apply saved background first
-    showHome(); // Then load the home content
+    console.log('Page loaded, applying saved background'); // Debug log
+    applySavedBackground();
+    showHome(); // Load home content after background is set
 });
-
-// Load saved background on page load
-window.onload = function() {
-    showHome();
-    applySavedBackground(); // Apply the saved background immediately
-};
 // Keep your existing updateTabTitleAndFaviconAndPanic() function unchanged
             
             function showMore() {
