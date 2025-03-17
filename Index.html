@@ -1473,45 +1473,42 @@ function showRocketScience() {
             'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
         }[savedTheme];
     }
-
-    setupPanicButton(); // Ensure this is present
 };
-                  </script>
-    </body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- Previous head section remains unchanged -->
-    </head>
-    <body>
-        <div id="content-side" class="content-side">
-            <!-- Initial content will be loaded by showHome() -->
-        </div>
 
-        <script>
-            // Previous functions (showHome, showMore, showMovies, showProxies, showPartners) remain unchanged
+  let panicListenerAdded = false; // Flag to prevent duplicate listeners
 
 function setupPanicButton() {
     const panicKey = localStorage.getItem('panicKey');
     let panicUrl = localStorage.getItem('panicUrl');
 
+    // Remove any existing listener to avoid duplicates
+    if (panicListenerAdded) {
+        document.removeEventListener('keydown', panicHandler);
+        panicListenerAdded = false;
+    }
+
     if (panicKey && panicUrl) {
-        // Ensure the URL has a protocol (http:// or https://)
+        // Ensure the URL has a protocol
         if (!panicUrl.startsWith('http://') && !panicUrl.startsWith('https://')) {
-            panicUrl = 'https://' + panicUrl; // Default to https if no protocol is specified
+            panicUrl = 'https://' + panicUrl;
         }
 
-        document.addEventListener('keydown', function(event) {
+        // Define the handler function
+        window.panicHandler = function(event) {
             if (event.key === panicKey || event.code === panicKey) {
-                // Use window.location.replace to fully redirect without adding to history
                 window.location.replace(panicUrl);
             }
-        });
+        };
+
+        // Add the listener
+        document.addEventListener('keydown', window.panicHandler);
+        panicListenerAdded = true;
     }
 }
 
-     function updateTabTitleAndFaviconAndPanic() {
+// Call it initially to set up on page load
+setupPanicButton();
+function updateTabTitleAndFaviconAndPanic() {
     const title = document.getElementById('tab-title').value;
     const faviconUrl = document.getElementById('favicon-url').value;
     const panicKey = document.getElementById('panic-key').value;
@@ -1536,13 +1533,11 @@ function setupPanicButton() {
     // Update panic button settings if provided
     if (panicKey.trim() !== '' && panicUrl.trim() !== '') {
         localStorage.setItem('panicKey', panicKey.trim());
-        // Add protocol if missing before saving
         if (!panicUrl.startsWith('http://') && !panicUrl.startsWith('https://')) {
             panicUrl = 'https://' + panicUrl;
         }
         localStorage.setItem('panicUrl', panicUrl.trim());
-        // Re-apply panic button setup after updating
-        setupPanicButton();
+        setupPanicButton(); // Refresh the listener with new settings
     }
 }
 
