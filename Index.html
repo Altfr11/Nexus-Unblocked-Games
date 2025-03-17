@@ -424,7 +424,7 @@
     typewriterEffect();
 }
 
-      function showSettings() {
+       function showSettings() {
     const contentSide = document.getElementById('content-side');
     contentSide.innerHTML = `
         <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
@@ -463,29 +463,15 @@
                     <option value="Blue Lake">Blue Lake</option>
                     <option value="Nature">Nature</option>
                     <option value="Space planet">Space planet</option>
-                    <option value="custom">Custom</option>
                 </select>
-            </div>
-            <div class="settings-option">
-                <label for="custom-background-url">Custom Background URL:</label>
-                <input type="text" id="custom-background-url" placeholder="Enter image URL (e.g., https://example.com/image.jpg)">
             </div>
         </div>
     `;
     // Pre-fill saved values
-    const savedTitle = localStorage.getItem('customTitle');
-    const savedFavicon = localStorage.getItem('customFavicon');
     const savedPanicKey = localStorage.getItem('panicKey');
     const savedPanicUrl = localStorage.getItem('panicUrl');
-    const savedTheme = localStorage.getItem('backgroundTheme');
-    const savedCustomBackground = localStorage.getItem('customBackgroundUrl');
-
-    if (savedTitle) document.getElementById('tab-title').value = savedTitle;
-    if (savedFavicon) document.getElementById('favicon-url').value = savedFavicon;
     if (savedPanicKey) document.getElementById('panic-key').value = savedPanicKey;
     if (savedPanicUrl) document.getElementById('panic-url').value = savedPanicUrl;
-    if (savedTheme) document.getElementById('background-theme').value = savedTheme;
-    if (savedCustomBackground) document.getElementById('custom-background-url').value = savedCustomBackground;
 }
             
             function showMore() {
@@ -1462,7 +1448,7 @@ function showRocketScience() {
             }
 
             // Initialize on page load
-    window.onload = function() {
+      window.onload = function() {
     showHome();
     setInterval(updateDateTime, 1000);
     
@@ -1479,19 +1465,16 @@ function showRocketScience() {
     }
 
     const savedTheme = localStorage.getItem('backgroundTheme');
-    const savedCustomBackground = localStorage.getItem('customBackgroundUrl');
     if (savedTheme) {
-        const backgrounds = {
+        document.body.style.backgroundImage = {
             'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
             'Blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
             'Nature': 'url("https://wallpapers-clan.com/wp-content/uploads/2024/12/summer-river-wooden-bridge-desktop-wallpaper-preview.jpg")',
-            'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")',
-            'custom': savedCustomBackground ? `url("${savedCustomBackground}")` : 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")'
-        };
-        document.body.style.backgroundImage = backgrounds[savedTheme];
+            'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
+        }[savedTheme];
     }
 };
-            
+
   let panicListenerAdded = false; // Flag to prevent duplicate listeners
 
 function setupPanicButton() {
@@ -1560,22 +1543,13 @@ function updateTabTitleAndFaviconAndPanic() {
 
 function changeBackground() {
     const theme = document.getElementById('background-theme').value;
-    const customBackgroundUrl = document.getElementById('custom-background-url').value.trim();
-    
+    const body = document.body;
     const backgrounds = {
         'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
         'Blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
         'Nature': 'url("https://wallpapers-clan.com/wp-content/uploads/2024/12/summer-river-wooden-bridge-desktop-wallpaper-preview.jpg")',
-        'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")',
-        'custom': customBackgroundUrl ? `url("${customBackgroundUrl}")` : 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")'
+        'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
     };
-
-    document.body.style.backgroundImage = backgrounds[theme];
-    localStorage.setItem('backgroundTheme', theme);
-    if (theme === 'custom' && customBackgroundUrl) {
-        localStorage.setItem('customBackgroundUrl', customBackgroundUrl);
-    }
-}
 
     body.style.backgroundImage = backgrounds[theme];
     localStorage.setItem('backgroundTheme', theme);
@@ -2635,4 +2609,3 @@ function showBackrooms2D() {
                             <div class="movie-item">
                                 <h3>Guardians Of The Galaxy: Vol 2</h3>
                                 <a href="https://drive.google.com/file/d/0B-uFe
-
