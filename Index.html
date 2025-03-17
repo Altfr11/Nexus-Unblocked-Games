@@ -1448,15 +1448,12 @@ function showRocketScience() {
             }
 
             // Initialize on page load
-            window.onload = function() {
+      window.onload = function() {
     showHome();
     setInterval(updateDateTime, 1000);
     
-    // Load saved settings
     const savedTitle = localStorage.getItem('customTitle');
-    if (savedTitle) {
-        document.title = savedTitle;
-    }
+    if (savedTitle) document.title = savedTitle;
 
     const savedFavicon = localStorage.getItem('customFavicon');
     if (savedFavicon) {
@@ -1477,8 +1474,7 @@ function showRocketScience() {
         }[savedTheme];
     }
 
-    // Setup panic button
-    setupPanicButton();
+    setupPanicButton(); // Ensure this is present
 };
                   </script>
     </body>
@@ -1496,24 +1492,30 @@ function showRocketScience() {
         <script>
             // Previous functions (showHome, showMore, showMovies, showProxies, showPartners) remain unchanged
 
-            function setupPanicButton() {
+function setupPanicButton() {
     const panicKey = localStorage.getItem('panicKey');
-    const panicUrl = localStorage.getItem('panicUrl');
+    let panicUrl = localStorage.getItem('panicUrl');
 
     if (panicKey && panicUrl) {
+        // Ensure the URL has a protocol (http:// or https://)
+        if (!panicUrl.startsWith('http://') && !panicUrl.startsWith('https://')) {
+            panicUrl = 'https://' + panicUrl; // Default to https if no protocol is specified
+        }
+
         document.addEventListener('keydown', function(event) {
             if (event.key === panicKey || event.code === panicKey) {
-                window.location.href = panicUrl;
+                // Use window.location.replace to fully redirect without adding to history
+                window.location.replace(panicUrl);
             }
         });
     }
 }
 
-       function updateTabTitleAndFaviconAndPanic() {
+     function updateTabTitleAndFaviconAndPanic() {
     const title = document.getElementById('tab-title').value;
     const faviconUrl = document.getElementById('favicon-url').value;
     const panicKey = document.getElementById('panic-key').value;
-    const panicUrl = document.getElementById('panic-url').value;
+    let panicUrl = document.getElementById('panic-url').value;
 
     // Update tab title if provided
     if (title.trim() !== '') {
@@ -1534,7 +1536,13 @@ function showRocketScience() {
     // Update panic button settings if provided
     if (panicKey.trim() !== '' && panicUrl.trim() !== '') {
         localStorage.setItem('panicKey', panicKey.trim());
+        // Add protocol if missing before saving
+        if (!panicUrl.startsWith('http://') && !panicUrl.startsWith('https://')) {
+            panicUrl = 'https://' + panicUrl;
+        }
         localStorage.setItem('panicUrl', panicUrl.trim());
+        // Re-apply panic button setup after updating
+        setupPanicButton();
     }
 }
 
