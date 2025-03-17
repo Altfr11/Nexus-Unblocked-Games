@@ -468,6 +468,7 @@ function showSettings() {
                 <label for="custom-background-url">Custom Background URL:</label>
                 <input type="text" id="custom-background-url" placeholder="Enter image URL (e.g., https://example.com/image.jpg)">
                 <button onclick="applyCustomBackground()">Apply</button>
+                <button onclick="disableCustomBackground()">Off</button>
             </div>
         </div>
     `;
@@ -481,8 +482,6 @@ function showSettings() {
     if (savedPanicUrl) document.getElementById('panic-url').value = savedPanicUrl;
     document.getElementById('background-theme').value = savedBackgroundTheme;
     if (savedCustomBackground) document.getElementById('custom-background-url').value = savedCustomBackground;
-
-    applySavedBackground(); // Apply saved background when Settings loads
 }
 
 function changeBackground() {
@@ -499,7 +498,7 @@ function changeBackground() {
     localStorage.setItem('backgroundTheme', theme);
     localStorage.removeItem('customBackgroundUrl');
     document.getElementById('custom-background-url').value = '';
-    console.log('Theme applied:', theme); // Debug log
+    console.log('Theme applied:', theme);
 }
 
 function applyCustomBackground() {
@@ -507,11 +506,25 @@ function applyCustomBackground() {
     if (customUrl) {
         document.body.style.backgroundImage = `url("${customUrl}")`;
         localStorage.setItem('customBackgroundUrl', customUrl);
-        localStorage.setItem('backgroundTheme', 'default'); // Reset theme to default
-        console.log('Custom URL applied:', customUrl); // Debug log
+        console.log('Custom URL applied:', customUrl);
     } else {
         alert('Please enter a valid image URL.');
     }
+}
+
+function disableCustomBackground() {
+    const savedTheme = localStorage.getItem('backgroundTheme') || 'default';
+    const backgrounds = {
+        'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
+        'Blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
+        'Nature': 'url("https://wallpapers-clan.com/wp-content/uploads/2024/12/summer-river-wooden-bridge-desktop-wallpaper-preview.jpg")',
+        'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
+    };
+
+    localStorage.removeItem('customBackgroundUrl');
+    document.getElementById('custom-background-url').value = '';
+    document.body.style.backgroundImage = backgrounds[savedTheme]; // Revert to saved theme
+    console.log('Custom background disabled, reverted to theme:', savedTheme);
 }
 
 function applySavedBackground() {
@@ -524,23 +537,20 @@ function applySavedBackground() {
         'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
     };
 
-    console.log('Applying saved background. Custom URL:', savedCustomUrl, 'Theme:', savedTheme); // Debug log
+    console.log('Applying saved background. Custom URL:', savedCustomUrl, 'Theme:', savedTheme);
     if (savedCustomUrl) {
         document.body.style.backgroundImage = `url("${savedCustomUrl}")`;
-    } else if (savedTheme && backgrounds[savedTheme]) {
-        document.body.style.backgroundImage = backgrounds[savedTheme];
     } else {
-        document.body.style.backgroundImage = backgrounds['default']; // Fallback
+        document.body.style.backgroundImage = backgrounds[savedTheme];
     }
 }
 
 // Apply saved background on page load
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Page loaded, applying saved background'); // Debug log
+    console.log('Page loaded, applying saved background');
     applySavedBackground();
-    showHome(); // Load home content after background is set
+    showHome();
 });
-// Keep your existing updateTabTitleAndFaviconAndPanic() function unchanged
             
             function showMore() {
                 const contentSide = document.getElementById('content-side');
@@ -2213,25 +2223,15 @@ function showBackrooms2D() {
                 src: url('/storage/fonts/ubuntu/Ubuntu.woff2') format('woff2');
             }
 
-            body {
-                margin: 0;
-                padding: 0;
-                font-family: 'Ubuntu', sans-serif;
-                display: flex;
-                background-color: black;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-attachment: fixed;
-                height: 100vh;
-                color: white;
-                overflow: hidden;
-            }
-
+          body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    /* No background-image here; let JavaScript handle it */
+}
             .content-side {
                 width: 100%;
                 color: white;
