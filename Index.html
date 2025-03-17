@@ -498,7 +498,7 @@ function changeBackground() {
     localStorage.setItem('backgroundTheme', theme);
     localStorage.removeItem('customBackgroundUrl');
     document.getElementById('custom-background-url').value = '';
-    console.log('Theme applied:', theme);
+    console.log('Theme applied and saved:', theme);
 }
 
 function applyCustomBackground() {
@@ -506,7 +506,7 @@ function applyCustomBackground() {
     if (customUrl) {
         document.body.style.backgroundImage = `url("${customUrl}")`;
         localStorage.setItem('customBackgroundUrl', customUrl);
-        console.log('Custom URL applied:', customUrl);
+        console.log('Custom URL applied and saved:', customUrl);
     } else {
         alert('Please enter a valid image URL.');
     }
@@ -523,7 +523,7 @@ function disableCustomBackground() {
 
     localStorage.removeItem('customBackgroundUrl');
     document.getElementById('custom-background-url').value = '';
-    document.body.style.backgroundImage = backgrounds[savedTheme]; // Revert to saved theme
+    document.body.style.backgroundImage = backgrounds[savedTheme];
     console.log('Custom background disabled, reverted to theme:', savedTheme);
 }
 
@@ -550,6 +550,8 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Page loaded, applying saved background');
     applySavedBackground();
     showHome();
+    // Ensure background persists after showHome()
+    setTimeout(applySavedBackground, 0); // Reapply after showHome() to override any reset
 });
             
             function showMore() {
