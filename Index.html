@@ -22,7 +22,6 @@
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-                background-image: url('https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__');
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -424,7 +423,7 @@
     typewriterEffect();
 }
 
-   function showSettings() {
+ function showSettings() {
     const contentSide = document.getElementById('content-side');
     contentSide.innerHTML = `
         <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
@@ -483,7 +482,7 @@
     document.getElementById('background-theme').value = savedBackgroundTheme;
     if (savedCustomBackground) document.getElementById('custom-background-url').value = savedCustomBackground;
 
-    // Apply the saved background immediately when Settings loads
+    // Apply the saved background when Settings is opened
     applySavedBackground();
 }
 
@@ -497,11 +496,10 @@ function changeBackground() {
         'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
     };
 
-    // Apply the selected theme and clear custom background
     body.style.backgroundImage = backgrounds[theme];
     localStorage.setItem('backgroundTheme', theme);
     localStorage.removeItem('customBackgroundUrl');
-    document.getElementById('custom-background-url').value = ''; // Clear the custom URL input
+    document.getElementById('custom-background-url').value = '';
 }
 
 function applyCustomBackground() {
@@ -509,8 +507,7 @@ function applyCustomBackground() {
     if (customUrl) {
         document.body.style.backgroundImage = `url("${customUrl}")`;
         localStorage.setItem('customBackgroundUrl', customUrl);
-        // Reset theme to default but keep custom URL as priority
-        localStorage.setItem('backgroundTheme', 'default');
+        localStorage.setItem('backgroundTheme', 'default'); // Reset theme to default
     } else {
         alert('Please enter a valid image URL.');
     }
@@ -532,6 +529,12 @@ function applySavedBackground() {
         document.body.style.backgroundImage = backgrounds[savedTheme];
     }
 }
+
+// Ensure background persists on page load
+document.addEventListener('DOMContentLoaded', function() {
+    applySavedBackground(); // Apply saved background first
+    showHome(); // Then load the home content
+});
 
 // Load saved background on page load
 window.onload = function() {
@@ -2221,7 +2224,6 @@ function showBackrooms2D() {
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-                background-image: url('https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=K[...]
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
