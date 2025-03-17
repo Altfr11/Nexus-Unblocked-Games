@@ -424,7 +424,7 @@
     typewriterEffect();
 }
 
-        function showSettings() {
+       function showSettings() {
     const contentSide = document.getElementById('content-side');
     contentSide.innerHTML = `
         <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
@@ -446,7 +446,15 @@
             <div class="settings-option">
                 <label for="favicon-url">Custom Favicon URL:</label>
                 <input type="text" id="favicon-url" placeholder="Enter favicon URL (e.g., https://example.com/favicon.ico)">
-                <button onclick="updateTabTitleAndFavicon()">Apply</button>
+            </div>
+            <div class="settings-option">
+                <label for="panic-key">Panic Button Key:</label>
+                <input type="text" id="panic-key" placeholder="Enter a single key (e.g., P, Escape)" maxlength="10">
+            </div>
+            <div class="settings-option">
+                <label for="panic-url">Panic Button URL:</label>
+                <input type="text" id="panic-url" placeholder="Enter URL (e.g., https://google.com)">
+                <button onclick="updateTabTitleAndFaviconAndPanic()">Apply</button>
             </div>
             <div class="settings-option">
                 <label for="background-theme">Background Theme:</label>
@@ -459,6 +467,11 @@
             </div>
         </div>
     `;
+    // Pre-fill saved values
+    const savedPanicKey = localStorage.getItem('panicKey');
+    const savedPanicUrl = localStorage.getItem('panicUrl');
+    if (savedPanicKey) document.getElementById('panic-key').value = savedPanicKey;
+    if (savedPanicUrl) document.getElementById('panic-url').value = savedPanicUrl;
 }
             
             function showMore() {
@@ -1435,7 +1448,7 @@ function showRocketScience() {
             }
 
             // Initialize on page load
-           window.onload = function() {
+            window.onload = function() {
     showHome();
     setInterval(updateDateTime, 1000);
     
@@ -1458,13 +1471,16 @@ function showRocketScience() {
     if (savedTheme) {
         document.body.style.backgroundImage = {
             'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
-            'blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
+            'Blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
             'Nature': 'url("https://wallpapers-clan.com/wp-content/uploads/2024/12/summer-river-wooden-bridge-desktop-wallpaper-preview.jpg")',
             'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
         }[savedTheme];
     }
+
+    // Setup panic button
+    setupPanicButton();
 };
-        </script>
+                  </script>
     </body>
 </html>
 <!DOCTYPE html>
@@ -1480,9 +1496,24 @@ function showRocketScience() {
         <script>
             // Previous functions (showHome, showMore, showMovies, showProxies, showPartners) remain unchanged
 
-          function updateTabTitleAndFavicon() {
+            function setupPanicButton() {
+    const panicKey = localStorage.getItem('panicKey');
+    const panicUrl = localStorage.getItem('panicUrl');
+
+    if (panicKey && panicUrl) {
+        document.addEventListener('keydown', function(event) {
+            if (event.key === panicKey || event.code === panicKey) {
+                window.location.href = panicUrl;
+            }
+        });
+    }
+}
+
+       function updateTabTitleAndFaviconAndPanic() {
     const title = document.getElementById('tab-title').value;
     const faviconUrl = document.getElementById('favicon-url').value;
+    const panicKey = document.getElementById('panic-key').value;
+    const panicUrl = document.getElementById('panic-url').value;
 
     // Update tab title if provided
     if (title.trim() !== '') {
@@ -1498,6 +1529,12 @@ function showRocketScience() {
         link.href = faviconUrl;
         document.getElementsByTagName('head')[0].appendChild(link);
         localStorage.setItem('customFavicon', faviconUrl);
+    }
+
+    // Update panic button settings if provided
+    if (panicKey.trim() !== '' && panicUrl.trim() !== '') {
+        localStorage.setItem('panicKey', panicKey.trim());
+        localStorage.setItem('panicUrl', panicUrl.trim());
     }
 }
 
