@@ -18,7 +18,7 @@
                 src: url('/storage/fonts/ubuntu/Ubuntu.woff2') format('woff2');
             }
 
-     body {
+ body {
     margin: 0;
     padding: 0;
     font-family: 'Ubuntu', sans-serif;
@@ -32,9 +32,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    min-height: 100vh; /* Changed to min-height */
+    min-height: 100vh;
     color: white;
-    overflow-x: hidden;
+    overflow: hidden; /* No scrolling on body */
 }
 
 .iframe-container {
@@ -266,13 +266,16 @@
                 align-items: center; /* Center contents horizontally */
             }
 
-           .games-container {
+         .games-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Space between items */
+    gap: 20px;
     justify-content: center;
     width: 100%;
-    max-width: 1200px; /* Fits 5 items of 220px + gaps */
+    max-width: 1200px;
+    max-height: 80vh; /* Limits height, allows scrolling if needed */
+    overflow-y: auto; /* Scroll only within games */
+    align-content: flex-start; /* Prevents stretching by aligning items at the top */
 }
 
             .movie-container {
@@ -293,8 +296,8 @@
     cursor: pointer;
 }
             
-            .game-item {
-    width: 220px; /* Fixed size for 5 per row (1200px / 5 ≈ 240px, adjusted for gaps) */
+           .game-item {
+    width: 220px;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.7);
@@ -302,7 +305,8 @@
     text-align: center;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease;
     cursor: pointer;
-    box-sizing: border-box; /* Keeps padding/border within width */
+    box-sizing: border-box;
+    flex-shrink: 0; /* Prevents items from shrinking or stretching */
 }
 .game-item:hover {
     transform: scale(1.05); /* Old hover effect */
@@ -789,11 +793,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 contentSide.innerHTML = `
                     <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
                     <div class="title">
-                        <span class="letter">G</span>
-                        <span class="letter">a</span>
-                        <span class="letter">m</span>
-                        <span class="letter">e</span>
-                        <span class="letter">s</span>
+                        <span class="letter">𝕲</span>
+                        <span class="letter">𝖆</span>
+                        <span class="letter">𝖒</span>
+                        <span class="letter">𝖊</span>
+                        <span class="letter">𝖘</span>
                     </div>
                     <div class="search-container">
                         <input type="text" id="game-search" class="search-bar" placeholder="Search Games" oninput="filterGames()">
@@ -1671,11 +1675,11 @@ function changeBackground() {
     contentSide.innerHTML = `
         <a href="#" class="back-link" onclick="showHome(); return false;">Home</a>
         <div class="title">
-            <span class="letter">G</span>
-            <span class="letter">a</span>
-            <span class="letter">m</span>
-            <span class="letter">e</span>
-            <span class="letter">s</span>
+            <span class="letter">𝕲</span>
+            <span class="letter">𝖆</span>
+            <span class="letter">𝖒</span>
+            <span class="letter">𝖊</span>
+            <span class="letter">𝖘</span>
         </div>
         <div class="search-container">
             <input type="text" id="game-search" class="search-bar" placeholder="Search Games" oninput="filterGames()">
