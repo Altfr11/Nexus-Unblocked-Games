@@ -12,41 +12,47 @@
                 src: url('/storage/fonts/ubuntu/Ubuntu.woff2') format('woff2');
             }
 
-            body {
-                margin: 0;
-                padding: 0;
-                font-family: 'Ubuntu', sans-serif;
-                display: flex;
-                background-color: black;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-attachment: fixed;
-                height: 100vh;
-                color: white;
-                overflow: hidden;
-            }
+     body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+    display: flex;
+    background-color: black;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh; /* Changed to min-height */
+    color: white;
+    overflow-x: hidden;
+}
+
+.iframe-container {
+    height: clamp(50vh, 80vh, 800px); /* Scale height with limits */
+    width: 90%;
+    max-width: 1200px;
+}
 
             .content-side {
-                width: 100%;
-                color: white;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                animation: fadeIn 1s ease-in-out forwards;
-                padding: 20px;
-                backdrop-filter: blur(10px);
-                position: relative;
-                z-index: 1;
-            }
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1s ease-in-out forwards;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+}
 
-         .title {
-    font-size: 80px; /* Keeping your original size; adjust to 60px if you prefer */
+        .title {
+    font-size: clamp(2rem, 5vw, 5rem);
     font-weight: bold;
     letter-spacing: 2px;
     display: flex;
@@ -57,7 +63,6 @@
     width: 100%;
     margin-bottom: 20px;
     padding-top: 40px;
-    /* Initial subtle glow */
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 }           
 
@@ -299,9 +304,8 @@
 }
 .game-item img {
     width: 100%;
-    height: 150px; /* Consistent icon height */
+    height: auto; /* Consistent icon height */
     object-fit: cover; /* Keeps icon theme */
-    border-radius: 8px;
 }
 
             .game-item:hover {
@@ -357,36 +361,57 @@
             }
 
             .partner-card img {
-                width: 100px;
-                height: 100px;
-                border-radius: 50%;
-                margin-bottom: 10px;
-            }
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* Already good, keeps aspect ratio */
+}
 
-            @media (max-width: 768px) {
-                .movie-item, .game-item {
-                    width: 45%;
-                }
-                .title {
-                    font-size: 36px;
-                }
-                .genre-title {
-                    font-size: 24px;
-                }
-            }
+           /* Tablets and smaller */
+@media (max-width: 768px) {
+    .title {
+        font-size: clamp(1.5rem, 4vw, 3rem);
+    }
+    .game-item, .movie-item {
+        width: 45%; /* Two columns */
+        margin: 10px auto;
+    }
+    .button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    .search-bar {
+        width: 70%; /* Wider search bar */
+    }
+}
 
-            @media (max-width: 480px) {
-                .movie-item, .game-item {
-                    width: 90%;
-                    margin-bottom: 15px;
-                }
-                .title {
-                    font-size: 28px;
-                }
-                .genre-title {
-                    font-size: 20px;
-                }
-            }
+/* Mobile phones */
+@media (max-width: 480px) {
+    .title {
+        font-size: clamp(1.2rem, 3vw, 2rem);
+    }
+    .game-item, .movie-item {
+        width: 90%; /* Single column */
+    }
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically */
+    }
+    .button {
+        width: 80%;
+        margin: 5px auto;
+    }
+    .search-container {
+        flex-direction: column;
+    }
+    .search-bar, .search-button {
+        width: 90%;
+        border-radius: 20px; /* Full radius for both */
+        border: 2px solid rgba(255, 255, 255, 0.7);
+    }
+    .search-button {
+        margin-top: 10px;
+        border-left: 2px solid rgba(255, 255, 255, 0.7); /* Restore border */
+    }
+}
         </style>
     </head>
     <body>
@@ -2444,23 +2469,20 @@ function showBackrooms2D() {
                 align-items: center; /* Center contents horizontally */
             }
 
-            .movie-container, .games-container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-                justify-content: center;
-            }
+           .games-container, .movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    padding: 0 10px; /* Add padding to prevent edge clipping */
+}
 
-            .movie-item, .game-item {
-                width: 200px;
-                padding: 10px;
-                background-color: rgba(255, 255, 255, 0.1);
-                border: 2px solid rgba(255, 255, 255, 0.7);
-                border-radius: 10px;
-                text-align: center;
-                transition: transform 0.3s ease-in-out, background-color 0.3s ease;
-                cursor: pointer;
-            }
+.game-item, .movie-item {
+    flex: 1 1 clamp(150px, 20vw, 220px); /* Flexible growth/shrink with min/max */
+    max-width: 100%; /* Prevent overflow */
+    box-sizing: border-box; /* Include padding/border in width */
+}
 
             .movie-item h3, .game-item h3 {
                 font-size: 16px;
