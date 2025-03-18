@@ -253,17 +253,24 @@
                 font-size: 20px;
             }
 
-            .container {
-                width: 90%;
-                max-width: 1200px;
-                padding: 20px;
-                backdrop-filter: blur(10px);
-                z-index: 1;
-                max-height: 90vh;
-                overflow-y: auto;
-                display: flex;
-                flex-direction: column;
-                align-items: center; /* Center contents horizontally */
+          .container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    max-height: 90vh;
+    overflow-y: auto; /* Enables vertical scrolling */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}    align-items: center; /* Center contents horizontally */
             }
 
          .games-container {
