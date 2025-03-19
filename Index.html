@@ -1733,6 +1733,10 @@ function changeBackground() {
                     <img src="https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/c127771edb0e821e4109b7058ae3f094.jpeg" alt="Rooftop Snipers">
                     <h3>Rooftop Snipers</h3>
                 </div>
+                <div class="game-item" onclick="showRooftop2()">
+    <img src="https://static.gogy.com/ogimages/rooftop-snipers-2.jpg" alt="Rooftop Snipers 2">
+    <h3>Rooftop Snipers 2</h3>
+</div>
                 <div class="game-item" onclick="showRecoil()">
                     <img src="https://23azostore.github.io/img/recoil.png" alt="Recoil">
                     <h3>Recoil</h3>
@@ -2147,6 +2151,19 @@ function showBackrooms2D() {
             </div>
             <div class="iframe-container">
                 <iframe src="https://bluwarp-is-terrible.netlify.app/games/monkeymart/" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+}
+            function showRooftop2() {
+    const contentSide = document.getElementById('content-side');
+    contentSide.innerHTML = `
+        <a href="#" class="back-link" onclick="showGames(); return false;">Games</a>
+        <div class="container">
+            <div class="title">
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://bluwarp-is-terrible.netlify.app/games/rooftop2/" allowfullscreen></iframe>
             </div>
         </div>
     `;
