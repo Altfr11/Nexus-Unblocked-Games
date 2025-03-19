@@ -42,19 +42,21 @@ body {
     max-width: 1200px;
 }
 
-           .content-side {
+         .content-side {
     width: 100%;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Start from top to avoid centering issues */
+    justify-content: flex-start; /* Changed from center to start */
     padding: 20px;
     backdrop-filter: blur(10px);
     position: relative;
     z-index: 1;
-    height: 100vh; /* Full viewport height */
-    overflow: hidden; /* Prevent overflow outside content-side */
+    min-height: 0; /* Remove fixed min-height */
+    max-height: 100vh; /* Limit to viewport height */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    box-sizing: border-box; /* Include padding in height calculations */
 }
 
         .title {
@@ -2143,14 +2145,15 @@ function showBackrooms2D() {
         <!-- Previous head section remains unchanged -->
         <style>
             /* Previous styles remain unchanged up to .back-link */
-        .settings-section {
+      .settings-section {
     margin: 20px 0;
-    width: 80%;
+    width: 90%; /* Slightly more flexible than fixed 80% */
     max-width: 500px;
     background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
+    padding: 15px; /* Reduced padding for smaller screens */
     border-radius: 15px;
     border: 2px solid rgba(255, 255, 255, 0.7);
+    box-sizing: border-box; /* Include padding/border in width */
 }
 
 .settings-option {
@@ -2168,22 +2171,24 @@ function showBackrooms2D() {
 .settings-option input,
 .settings-option select {
     width: 100%;
-    padding: 8px;
+    padding: 6px; /* Reduced from 8px */
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 5px;
     color: white;
-    font-size: 16px;
+    font-size: clamp(14px, 2.5vw, 16px); /* Scales font size */
+    box-sizing: border-box;
 }
 
 .settings-option button {
     background: rgba(255, 255, 255, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.7);
-    padding: 8px 15px;
+    padding: 6px 12px; /* Reduced from 8px 15px */
     color: white;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-size: clamp(14px, 2.5vw, 16px);
 }
 
 .settings-option button:hover {
@@ -2291,18 +2296,20 @@ function showBackrooms2D() {
     min-height: 0; /* Prevents content-side from expanding beyond container */
 }
 
-            .title {
-                font-size: 60px;
-                font-weight: bold;
-                letter-spacing: 2px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: rgba(255, 255, 255, 0.9);
-                text-align: center;
-                width: 100%;
-                margin-bottom: 20px; /* Added spacing below title */
-            }
+         .title {
+    font-size: clamp(2rem, 5vw, 5rem); /* Scales dynamically */
+    font-weight: bold;
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-top: 40px; /* Keep some top spacing */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
 
             .letter {
                 opacity: 0;
@@ -2587,30 +2594,32 @@ function showBackrooms2D() {
                 margin-bottom: 10px;
             }
 
-            @media (max-width: 768px) {
-                .movie-item, .game-item {
-                    width: 45%;
-                }
-                .title {
-                    font-size: 36px;
-                }
-                .genre-title {
-                    font-size: 24px;
-                }
-            }
+            @media (max-height: 800px) {
+    .content-side {
+        padding: 10px; /* Reduce padding on shorter screens */
+    }
+    .settings-section {
+        padding: 10px;
+        margin: 10px 0;
+    }
+    .settings-option {
+        margin: 10px 0; /* Reduce spacing */
+    }
+    .title {
+        padding-top: 20px; /* Reduce top padding */
+        margin-bottom: 10px;
+    }
+}
 
-            @media (max-width: 480px) {
-                .movie-item, .game-item {
-                    width: 90%;
-                    margin-bottom: 15px;
-                }
-                .title {
-                    font-size: 28px;
-                }
-                .genre-title {
-                    font-size: 20px;
-                }
-            }
+@media (max-width: 1366px) {
+    .settings-section {
+        width: 95%; /* More width on narrower screens */
+    }
+    .back-link {
+        font-size: 16px; /* Slightly smaller */
+        padding: 6px 12px;
+    }
+}
         </style>
     </head>
     <body>
@@ -2718,3 +2727,4 @@ function showBackrooms2D() {
                             <div class="movie-item">
                                 <h3>Guardians Of The Galaxy: Vol 2</h3>
                                 <a href="https://drive.google.com/file/d/0B-uFe
+
