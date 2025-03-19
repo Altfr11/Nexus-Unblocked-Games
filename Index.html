@@ -514,6 +514,13 @@ function showSettings() {
                 <button onclick="applyCustomBackground()">Apply</button>
                 <button onclick="disableCustomBackground()">Off</button>
             </div>
+            <!-- Updated Option for Downloading and Importing Saved Data -->
+            <div class="settings-option">
+                <label>Saved Game Data:</label>
+                <button onclick="downloadSavedData()">Download</button>
+                <input type="file" id="import-file" accept=".json" style="display: none;" onchange="importSavedData(this)">
+                <button onclick="document.getElementById('import-file').click()">Import</button>
+            </div>
         </div>
     `;
     // Pre-fill saved values
@@ -527,76 +534,6 @@ function showSettings() {
     document.getElementById('background-theme').value = savedBackgroundTheme;
     if (savedCustomBackground) document.getElementById('custom-background-url').value = savedCustomBackground;
 }
-
-function changeBackground() {
-    const theme = document.getElementById('background-theme').value;
-    const body = document.body;
-    const backgrounds = {
-        'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
-        'Blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
-        'Nature': 'url("https://wallpapers-clan.com/wp-content/uploads/2024/12/summer-river-wooden-bridge-desktop-wallpaper-preview.jpg")',
-        'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
-    };
-
-    body.style.backgroundImage = backgrounds[theme];
-    localStorage.setItem('backgroundTheme', theme);
-    localStorage.removeItem('customBackgroundUrl');
-    document.getElementById('custom-background-url').value = '';
-    console.log('Theme applied and saved:', theme);
-}
-
-function applyCustomBackground() {
-    const customUrl = document.getElementById('custom-background-url').value.trim();
-    if (customUrl) {
-        document.body.style.backgroundImage = `url("${customUrl}")`;
-        localStorage.setItem('customBackgroundUrl', customUrl);
-        console.log('Custom URL applied and saved:', customUrl);
-    } else {
-        alert('Please enter a valid image URL.');
-    }
-}
-
-function disableCustomBackground() {
-    const savedTheme = localStorage.getItem('backgroundTheme') || 'default';
-    const backgrounds = {
-        'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
-        'Blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
-        'Nature': 'url("https://wallpapers-clan.com/wp-content/uploads/2024/12/summer-river-wooden-bridge-desktop-wallpaper-preview.jpg")',
-        'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
-    };
-
-    localStorage.removeItem('customBackgroundUrl');
-    document.getElementById('custom-background-url').value = '';
-    document.body.style.backgroundImage = backgrounds[savedTheme];
-    console.log('Custom background disabled, reverted to theme:', savedTheme);
-}
-
-function applySavedBackground() {
-    const savedCustomUrl = localStorage.getItem('customBackgroundUrl');
-    const savedTheme = localStorage.getItem('backgroundTheme') || 'default';
-    const backgrounds = {
-        'default': 'url("https://media-hosting.imagekit.io//d27e4cae183a417c/sand-dunes-night-sky-macos-desktop-wallpaper-4k.jpg?Expires=1836534384&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KNZOpH-O24bw61F79H9AlymyOuJ5VVjNgEtscyfq9lWK~IyYaq9-UfZDiHFsxTAkDr92DI68Fw~Pfwb7~kRKN2ZlCFtz7BYhktGzgKUAgIohz92OxJ-Co71D667aL93cFKVcjogPZTLUpIpUqFTzJipcUjOm~cXkkCXFXqt4iT0NoJIxsGIX5y8bu4rO8F2wrw617a2Z69g8oceZ17V3GUCD3P-LMEJiif7INTi5Qu9F5XxHUtDVFTg6wi0FyQApviQ3l9Wgiokr0k9SWLU7xtz2RkG7CenqNdzEZrcDP0r~1dK~PzDOEQ7Cw~Gf2Hwtb36d9q7~3LiwL~zskKX07A__")',
-        'Blue Lake': 'url("https://wallpapers-clan.com/wp-content/uploads/2025/03/night-sky-with-river-landscape-desktop-wallpaper-preview.jpg")',
-        'Nature': 'url("https://wallpapers-clan.com/wp-content/uploads/2024/12/summer-river-wooden-bridge-desktop-wallpaper-preview.jpg")',
-        'Space planet': 'url("https://wallpapers.com/images/featured/space-sjryfre8k8f6i3ge.jpg")'
-    };
-
-    console.log('Applying saved background. Custom URL:', savedCustomUrl, 'Theme:', savedTheme);
-    if (savedCustomUrl) {
-        document.body.style.backgroundImage = `url("${savedCustomUrl}")`;
-    } else {
-        document.body.style.backgroundImage = backgrounds[savedTheme];
-    }
-}
-
-// Apply saved background on page load
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Page loaded, applying saved background');
-    applySavedBackground();
-    showHome();
-    // Ensure background persists after showHome()
-    setTimeout(applySavedBackground, 0); // Reapply after showHome() to override any reset
-});
             
             function showMore() {
                 const contentSide = document.getElementById('content-side');
@@ -2248,8 +2185,77 @@ function showBackrooms2D() {
         <div id="content-side" class="content-side">
             <!-- Initial content will be loaded by showHome() -->
         </div>
+        
 
         <script>
+            function importSavedData(input) {
+    const file = input.files[0];
+    if (!file) {
+        alert("Please select a file to import.");
+        return;
+    }
+
+    // Check if the file is a JSON file
+    if (!file.name.endsWith('.json')) {
+        alert("Please upload a valid JSON file.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        try {
+            const importedData = JSON.parse(event.target.result);
+            
+            // Clear existing localStorage and import new data
+            localStorage.clear();
+            for (let key in importedData) {
+                if (importedData.hasOwnProperty(key)) {
+                    localStorage.setItem(key, importedData[key]);
+                }
+            }
+            
+            alert("Saved data imported successfully! Refresh the page to apply changes.");
+            
+            // Optionally reapply settings immediately
+            applySavedBackground();
+            setupPanicButton(); // If you have this function defined elsewhere
+        } catch (e) {
+            alert("Error importing data: Invalid JSON file.");
+            console.error("Import error:", e);
+        }
+    };
+    reader.onerror = function() {
+        alert("Error reading the file.");
+    };
+    reader.readAsText(file);
+    
+    // Reset the input so the same file can be uploaded again if needed
+    input.value = '';
+}
+            function downloadSavedData() {
+    // Get all local storage data
+    const localStorageData = { ...localStorage };
+    
+    // Convert the data to a JSON string
+    const dataStr = JSON.stringify(localStorageData, null, 2);
+    
+    // Create a Blob with the JSON data
+    const blob = new Blob([dataStr], { type: "application/json" });
+    
+    // Create a temporary URL for the Blob
+    const url = window.URL.createObjectURL(blob);
+    
+    // Create a temporary link element to trigger the download
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `nexus_saved_data_${new Date().toISOString().split('T')[0]}.json`; // Filename with date
+    document.body.appendChild(link);
+    link.click();
+    
+    // Clean up
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+}
             // All JavaScript remains unchanged
         </script>
     </body>
