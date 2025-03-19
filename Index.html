@@ -439,7 +439,7 @@ body {
         </div>
 
         <script>
-           function showHome() {
+          function showHome() {
     const contentSide = document.getElementById('content-side');
     contentSide.innerHTML = `
         <div class="title">
@@ -450,7 +450,7 @@ body {
             <span class="letter">𝖘</span>
             <span class="letter"></span>
         </div>
-        <h2 class="sub-title">Version 3.3 Netlify</h2>
+        <h2 class="-sub-title">Version 3.3 Netlify</h2>
         <div id="online-notice">Enjoy the freedom of being able to watch any show, movie, or play any game you would like.</div>
         <div class="button-container">
             <button class="button" onclick="showGames()">Games</button>
@@ -459,7 +459,8 @@ body {
             <button class="button" onclick="showSettings()">Settings</button>
         </div>
         <br>
-        <a href="#">˗ˏˋ❀ website created & developed by JXA Games ❀ ´ˎ˗</a>
+        <a href="#">˗ˏˋ❀Nexus Created And Developed By JXA❀ ´ˎ˗</a>
+        <a href="#" onclick="openInAboutBlank(); return false;">about:blank</a>
         <br>
         <div class="datetime" id="datetime"></div>
     `;
@@ -467,6 +468,22 @@ body {
     typewriterEffect();
 }
 
+function openInAboutBlank() {
+    // Open a new about:blank window
+    const blankWindow = window.open('about:blank', '_blank');
+    if (blankWindow) {
+        // Get the current page's full HTML content
+        const currentPageContent = document.documentElement.outerHTML;
+        // Write the content into the about:blank window
+        blankWindow.document.open();
+        blankWindow.document.write(currentPageContent);
+        blankWindow.document.close();
+        // Optionally close the original window (uncomment if desired)
+        // window.close();
+    } else {
+        alert('Popup blocked. Please allow popups for this site to use the about:blank feature.');
+    }
+}
 function showSettings() {
     const contentSide = document.getElementById('content-side');
     contentSide.innerHTML = `
